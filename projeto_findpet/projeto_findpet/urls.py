@@ -16,10 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from core import views
+from django.views.generic import RedirectView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('login/', views.login_user),
-    path('login/submit', views.submit_login),
-    path('home', views.home)
+    path('admin/', admin.site.urls, name='admin'),
+    path('pet/all/', views.list_all_pets, name='home'),
+    path('login/', views.login_user, name='login'),
+    path('login/submit', views.submit_login, name='login/submit'),
+    path('logout/', views.logout_user, name='logout'),
+    path('', RedirectView.as_view(url='pet/all/'))
 ]

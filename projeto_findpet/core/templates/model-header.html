@@ -1,0 +1,78 @@
+{% load static %}
+
+<style>
+    
+    .header {
+      background-color:gold;
+      padding: 30px;
+      text-align: center;
+    }
+    
+    #navbar {
+      overflow: hidden;
+      background-color: #FF5D5B;
+    }
+    
+    #navbar a {
+      float: left;
+      display: block;
+      color: #f2f2f2;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 17px;
+    }
+    
+    #navbar a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+    
+    #navbar a.active {
+      background-color: black;
+      color: white;
+    }
+    
+    .content {
+      padding: 16px;
+    }
+    
+    .sticky {
+      position: fixed;
+      top: 0;
+      width: 100%;
+    }
+    
+    .sticky + .content {
+      padding-top: 60px;
+    }
+</style>
+    
+<div class="header">
+    <img src="{% static 'imgs\logosemfundo.png'%}" style="width:130px; height: 130px;"></img>
+</div>
+    
+<div id="navbar">
+    <a class="active" href="#">INÍCIO</a>
+    <a href="#">TODOS</a>
+    <a href="#">MEUS PETS</a>
+    <a href="#">MURAL DO SUCESSO</a>
+    <a href="#">CONTATO</a>
+    <a href="#">SAIR</a>
+</div>
+
+<script>
+window.onscroll = function() {myFunction()};
+
+var navbar = document.getElementById("navbar");
+var sticky = navbar.offsetTop;
+
+function myFunction() {
+    if (window.pageYOffset >= sticky) {
+    navbar.classList.add("sticky")
+    } else {
+    navbar.classList.remove("sticky");
+    }
+}
+</script>
+    

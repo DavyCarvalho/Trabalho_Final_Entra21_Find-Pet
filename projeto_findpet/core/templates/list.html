@@ -1,0 +1,9 @@
+{% extends "model-page.html" %}
+
+{% block content %}
+{% for p in pet %}
+    {{ p.pet_name }}
+    {{ p.district }}
+    {{ p.description }}
+{% endfor %}
+{% endblock %}
