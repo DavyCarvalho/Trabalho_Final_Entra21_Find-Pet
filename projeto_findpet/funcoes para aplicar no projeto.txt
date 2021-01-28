@@ -1,0 +1,12 @@
+3ª tabela de comentarios do botão "Eu vi!" - IMPORTANTE
+
+link para cadastrar na tela de login e mudar senha
+icone que mostre que o user está logado
+
+campo de busca por palavra chave 
+https://docs.djangoproject.com/en/3.1/ref/models/querysets/#std:fieldlookup-contains
+
+localização com google maps
+api google vision
+chat????
+melhorar o container do post

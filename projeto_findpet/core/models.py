@@ -10,7 +10,7 @@ class Pet(models.Model):
     contact_phone = models.CharField(max_length=11)
     contact_email = models.EmailField()
     begin_date = models.DateTimeField(auto_now_add=True)
-    photo = models.ImageField()
+    photo = models.ImageField(upload_to='uploaded_pet_photos')
     active = models.BooleanField(default=True)
     
     def __str__(self):

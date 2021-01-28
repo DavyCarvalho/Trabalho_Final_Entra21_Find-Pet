@@ -1,9 +1,44 @@
 {% extends "model-page.html" %}
 
 {% block content %}
-{% for p in pet %}
-    {{ p.pet_name }}
-    {{ p.district }}
-    {{ p.description }}
-{% endfor %}
+
+<style>
+    .polaroid{
+        width: 250px;
+        /* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.2); */
+        text-align: left;
+    }
+
+    .container {
+        padding: 10px;
+
+    }
+
+    .container_pet {
+        background-color: #FFD700;
+        color: black;
+        position: relative;
+        z-index: -1;
+    }
+    
+</style>
+
+<div class='container mb-4 mt-4'>
+    <div class="row">
+        {% for p in pet %}
+        <div class='col-sm-4'>
+            <div class='polaroid ml-5'>
+                <img src='{{p.photo.url}}' style='width: 100%; position: relative; z-index: -1;'>
+                <div class='container_pet'>
+                    {{ p.pet_name }}
+                    {{ p.district }}
+                    {{ p.description }} 
+                    {{p.user}}
+                </div>
+            </div>  
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
 {% endblock %}

@@ -17,12 +17,19 @@ from django.contrib import admin
 from django.urls import path
 from core import views
 from django.views.generic import RedirectView
+from django.contrib.staticfiles.urls import static, staticfiles_urlpatterns
+from . import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
     path('pet/all/', views.list_all_pets, name='home'),
+    path('pet/user/', views.list_user_pets, name='all_user_pets'),
+    path('pet/detail/<id>/', views.pet_detail, name='pet_detail'),
     path('login/', views.login_user, name='login'),
     path('login/submit', views.submit_login, name='login/submit'),
     path('logout/', views.logout_user, name='logout'),
     path('', RedirectView.as_view(url='pet/all/'))
 ]
+
+urlpatterns += staticfiles_urlpatterns()
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
