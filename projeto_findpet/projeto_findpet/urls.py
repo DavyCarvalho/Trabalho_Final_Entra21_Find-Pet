@@ -27,6 +27,8 @@ urlpatterns = [
     path('pet/detail/<id>/', views.pet_detail, name='pet_detail'),
     path('login/', views.login_user, name='login'),
     path('login/submit', views.submit_login, name='login/submit'),
+    path('pet/register/',views.register_pet, name='register_pet'),
+    path('pet/register/submit',views.set_pet),
     path('logout/', views.logout_user, name='logout'),
     path('', RedirectView.as_view(url='pet/all/'))
 ]

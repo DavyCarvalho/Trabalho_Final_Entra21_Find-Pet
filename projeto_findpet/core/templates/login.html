@@ -1,39 +1,57 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <title>FIND PET</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <div class='container mt-4'>
-        <form action='submit', method='POST'>{% csrf_token %}
-            <h2>FIND PET</h2>
-            
-            <div class='form-group'>
-                <label for='username'>Usuário</label>
-                <input type='text' class='form-control' id='username' 
-                       name='username' placeholder='Nome de Usuário'>  
-            </div>
+    <div class="bg"></div>
 
-            <div class='form-group'>
-                <label for='password'>Senha</label>
-                <input type='password' class='form-control' id='password' 
-                       name='password' placeholder='Senha'>  
-            </div>
+    <div class="row">
+        <div class='col-sm-5'>
+            <img src="{% static 'imgs\logosemfundo.png'%}" style="width:300px; height: 300px; margin-top: 150px; margin-left:160px;"></img>            
+        </div>
 
-            <div>
-                {% for message in messages %}
-                <div class="alert alert-danger">
-                    <strong>Tente Novamente!</strong> {{ message }}
-                </div>
-                {% endfor %}
-                <button type="submit" class="btn btn-success">Entrar</button>
-            </div>
+        <div class='col-sm-4'>
+            <div class='container' style="margin-top:160px;">
+                <form action='submit', method='POST'>{% csrf_token %}
+                    <h2>FIND PET</h2>
+                    
+                    <div class='form-group'>
+                        <label for='username'>Usuário</label>
+                        <input type='text' class='form-control' id='username' 
+                            name='username' placeholder='Nome de Usuário'>  
+                    </div>
 
-        </form>
+                    <div class='form-group'>
+                        <label for='password'>Senha</label>
+                        <input type='password' class='form-control' id='password' 
+                            name='password' placeholder='Senha'>  
+                    </div>
+
+                    <div>
+                        {% for message in messages %}
+                        <div class="alert alert-danger">
+                            <strong>Tente Novamente!</strong> {{ message }}
+                            <br>
+                            <a href="#" style='font-size:15px;'>Clique aqui para redefinir sua Senha!</a>
+                        </div>
+                        {% endfor %}
+                        <button type="submit" class="btn btn-success">Entrar</button>
+                        <br>
+                        <a style='font-size:15px;'>Ainda não tem Cadastro?</a>
+                        <!-- <br> -->
+                        <a href="#" style='font-size:15px;'>Clique aqui para se cadastrar!</a>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
+</body>

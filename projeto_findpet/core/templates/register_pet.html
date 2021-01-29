@@ -1,0 +1,51 @@
+{% extends "model-page.html" %}
+
+{% block content %}
+
+    <h1 class='text-center mt-4'>CADASTRAR PET DESAPARECIDO</h1>
+
+    <form enctype='multipart/form-data' action='submit', method='POST'>{% csrf_token%}
+        <div class='container'>
+
+            <div class='form-group'>
+                <label for='pet_name' ><b>Nome do Pet</b></label>
+                <input class= 'form-control' type='text' name='pet_name' placeholder='Nome do seu Amigo!'>
+            </div>
+
+            <div class='form-group'>
+                <label for='district'><b>Bairro</b></label>
+                <input class= 'form-control' type='text' name='district' placeholder='Bairro onde o Pet mora'>
+            </div>
+
+            <div class='form-group'>
+                <label for='city'><b>Cidade</b></label>
+                <input class= 'form-control' type='text' name='city' placeholder='Cidade onde o Pet mora'>
+            </div>
+
+            <div class='form-group'>
+                <label for='phone'><b>Telefone</b></label>
+                <input class= 'form-control' type='text' name='phone' placeholder='Deixe aqui o telefone para entrarem em contato com você caso encontrem seu Pet!'>
+            </div>
+
+            <div class='form-group'>
+                <label for='email'><b>E-mail</b></label>
+                <input class= 'form-control' type='text' name='email' placeholder='Deixe aqui o E-mail para entrarem em contato com você caso encontrem seu Pet!'>
+            </div>
+
+            <div class='form-group'>
+                <label for='description'><b>Descrição do Pet</b></label>
+                <textarea class='form-control' rows='5' type='text' name='description'
+                placeholder='Detalhes expecíficos a respeito do seu Pet e do desaparecimento dele que possam facilitar que alguem identifique ou encontre seu Amigo!'></textarea>
+            </div>
+
+            <div class='form-group'>
+                <input type='file' class='form-control-file border' name='file' accept='image/*'>
+            </div>
+
+            <button type='submit' class='btn btn-primary'>
+                <b>Cadastrar</b>
+            </button>
+        </div>
+    </form>
+
+{% endblock %}
