@@ -9,6 +9,7 @@ from .models import Pet
 def register_pet(request):
     return render(request, 'register_pet.html')
 
+
 @login_required(login_url='/login/')
 def set_pet(request):
     pet_name = request.POST.get('pet_name')
@@ -23,12 +24,22 @@ def set_pet(request):
     pet = Pet.objects.create(pet_name=pet_name, district=district, city=city, 
                             contact_phone=contact_phone, contact_email=contact_email,
                             description=description, photo=photo, user=user)
-    return redirect('/')
-    
+    url = '/pet/detail/{}/'.format(pet.id)
+    return redirect(url)
+
+
+@login_required(login_url='/login/')
+def delete_pet(request, id):
+    pet = Pet.objects.get(id=id)
+    if pet.user == request.user:
+        pet.delete()
+    return redirect('/') 
+
     
 def list_all_pets(request):
     pet = Pet.objects.filter(active=True)
     return render(request, 'list.html', {'pet':pet})
+
 
 @login_required(login_url='/login/')
 def list_user_pets(request):
@@ -40,12 +51,15 @@ def pet_detail(request, id):
     pet = Pet.objects.get(active=True, id=id)
     return render(request, 'pet.html', {'pet':pet})
 
+
 def login_user(request):
     return render(request, 'login.html')
+
 
 def logout_user(request):
     logout(request)
     return redirect('/login/') 
+
 
 @csrf_protect
 def submit_login(request):

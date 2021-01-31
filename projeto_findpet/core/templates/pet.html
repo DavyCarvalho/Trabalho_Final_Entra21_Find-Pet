@@ -6,6 +6,27 @@
 
 <h1 class='text-center mt-4' >DETALHES DO PET</h1>
 
+<div class="modal" id="modal_confirm">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class='modal-header'>
+                <h4 class='modal-title'>Deseja realmente Excluir?</h4>
+                <button type='button' class='close' data-dismiss='modal'>&times;</button>
+            </div>
+            <div class='modal-body text-right'>
+                <a href='/pet/delete/{{ pet.id }}/'>
+                    <button type='button' class='btn btn-danger'>
+                        EXCLUIR
+                    </button>
+                </a>
+                    <button type='button' class='btn btn-warning' data-dismiss='modal'>
+                        CANCELAR
+                    </button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class='container'>
     <div class='row'>
         <div class='col-sm-4'>
@@ -29,19 +50,26 @@
             <br>
             <h5 style='position: relative; z-index: -1;'>Descrição:</h5>
             <h5 style='position: relative; z-index: -1;'>{{pet.description}}</h5>
+           
             {% if request.user == pet.user %}
-                <a href="#">
-                <button href="#" type="button" class="mt-4 btn btn-warning"><b>Alterar Informações</b></button>
-                </a>
-                <a href="#">
-                <button href="#" type="button" class="mt-4 btn btn-danger"><b>Excluir Postagem</b></button>
+            <a href="#">
+            <button href="#" type="button" class="mt-4 btn btn-warning"><b>Alterar Informações</b></button>
+            </a>
+
+            <!-- <a href="/pet/delete/{{ pet.id }}"> -->
+
+            <button type="button" class="mt-4 btn btn-danger" data-toggle='modal'
+                    data-target="#modal_confirm"><b>Excluir Postagem</b></button>
+            
+            <!-- </a> -->
+
             {% endif %}
+
             {% if request.user != pet.user %}
                 <a href="#">
                 <button href="#" type="button" class="mt-4 btn btn-warning"><b>Clique aqui se você viu esse Pet!</b></button>
                 </a>
             {% endif %}
-            </a>
         </div>
     </div>
 </div>
