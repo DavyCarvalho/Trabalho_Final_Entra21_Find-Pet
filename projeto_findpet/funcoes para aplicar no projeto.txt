@@ -14,3 +14,5 @@ melhorar o container do post
 MUDAR MODEL DE PET E ADICIONAR OS CAMPOS ENDEREÇO NO MODEL USER
 
 campo RAÇA no model Pet
+
+botar prazo maximo de duração que o post pode ficar

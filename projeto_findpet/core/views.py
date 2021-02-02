@@ -7,6 +7,11 @@ from .models import Pet
 
 @login_required(login_url='/login/')
 def register_pet(request):
+    pet_id = request.GET.get('id') #DUVIDAS O QUE ISSO ESTÁ FAZENDO EXATAMENTE! FALAR COM O PROFESSOR!!!!
+    if pet_id:
+        pet = Pet.objects.get(id=pet_id)
+        if pet.user == request.user:
+            return render(request, 'register_pet.html', {'pet':pet})
     return render(request, 'register_pet.html')
 
 
@@ -20,10 +25,22 @@ def set_pet(request):
     description = request.POST.get('description')
     photo = request.FILES.get('file')
     user = request.user
+    pet_id = request.POST.get('pet_id')
     
-    pet = Pet.objects.create(pet_name=pet_name, district=district, city=city, 
-                            contact_phone=contact_phone, contact_email=contact_email,
-                            description=description, photo=photo, user=user)
+    if pet_id:
+        pet = Pet.objects.get(id=pet_id)
+        if user == pet.user:
+            pet.email = contact_email
+            pet.phone = contact_phone
+            pet.city = city
+            pet.description = description
+            if photo:
+                pet.photo = photo
+            pet.save()
+    else:
+        pet = Pet.objects.create(pet_name=pet_name, district=district, city=city, 
+                                contact_phone=contact_phone, contact_email=contact_email,
+                                description=description, photo=photo, user=user)
     url = '/pet/detail/{}/'.format(pet.id)
     return redirect(url)
 
@@ -35,9 +52,9 @@ def delete_pet(request, id):
         pet.delete()
     return redirect('/') 
 
-    
+
 def list_all_pets(request):
-    pet = Pet.objects.filter(active=True)
+    pet = Pet.objects.filter(active=True).order_by('-begin_date')
     return render(request, 'list.html', {'pet':pet})
 
 
