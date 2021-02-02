@@ -87,7 +87,7 @@ def submit_login(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('home')
+            return redirect('all')
         else:
             messages.error(request, 'Usuário e/ou Senha Inválidos!')
     return redirect('/login/')
