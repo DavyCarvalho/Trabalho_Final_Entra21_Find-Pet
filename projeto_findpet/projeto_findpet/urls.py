@@ -20,13 +20,14 @@ from django.views.generic import RedirectView
 from django.contrib.staticfiles.urls import static, staticfiles_urlpatterns
 from . import settings
 from register import views as rv
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
     path('pet/all/', views.list_all_pets, name='all'),
     path('pet/user/', views.list_user_pets, name='all_user_pets'),
     path('pet/detail/<id>/', views.pet_detail, name='pet_detail'),
-    path('login/register_user/',rv.register, name='register_user'),
+    path('register_user/', rv.register, name='register_user'),
     path('login/', views.login_user, name='login'),
     path('login/submit', views.submit_login, name='login/submit'),
     path('pet/register/',views.register_pet, name='register_pet'),

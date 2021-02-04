@@ -174,10 +174,11 @@
                 </div>
                 <div class="description">
                     <h1>Nome: {{ p.pet_name }}</h1>
+                    <h1>Dono: {{ p.owner }}</h1>
                     <h2 class="pt-1 pb-4">
-                      Desaparecido em {{ p.begin_date }}<br>
-                      Região de: Blumenau, Garcia.<br>
-                      Publicado: {{ p.begin_date }}.
+                      Desaparecido em: {{p.city}}<br>
+                      Bairro: {{p.district}}<br>
+                      Postado em {{ p.begin_date }}
                     </h2>
                     <p class="read-more">
                         <a href="../detail/{{ p.id }}" target="_blank">MAIS INFORMAÇÕES...</a>

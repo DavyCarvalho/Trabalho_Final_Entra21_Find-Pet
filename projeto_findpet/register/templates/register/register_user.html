@@ -22,9 +22,11 @@
   <div class='col-sm-4'>
       <div class='container' style="margin-top:30px;">
         <form method="POST" class='form-group'>{%csrf_token%}
+          <h1>Criar Conta</h1>
           {{ form|crispy }}
           <br>
           <button type='submit' class='btn btn-success'>Criar Conta</button>
+          <button href="{% url 'login' %}" type='button' class='btn btn-danger'>Voltar a tela de Login</button>
         </form>
       </div>
   </div>

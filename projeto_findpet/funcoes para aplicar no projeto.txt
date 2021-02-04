@@ -18,4 +18,10 @@ campo RAÇA no model Pet
 
 botar prazo maximo de duração que o post pode ficar
 
-IMPLEMENTAR AJAX 
+IMPLEMENTAR AJAX
+
+CAMPO DE INFORMAÇÕES DO USUÁRIO
+
+ESTUDAR SOBRE METODOLOGIAS AGEIS
+
+ESTUDAR SOBRE GIT - VERSIONAMENTO

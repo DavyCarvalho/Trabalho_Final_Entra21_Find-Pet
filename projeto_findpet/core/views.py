@@ -3,7 +3,7 @@ from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import Pet
+from .models import Pet, Eu_vi
 
 @login_required(login_url='/login/')
 def register_pet(request):
@@ -17,19 +17,24 @@ def register_pet(request):
 
 @login_required(login_url='/login/')
 def set_pet(request):
+    pet_id = request.POST.get('pet_id')
+    user = request.user
+    owner = request.POST.get('owner')
     pet_name = request.POST.get('pet_name')
+    breed = request.POST.get('breed')
     district = request.POST.get('district')
     city = request.POST.get('city')
     contact_phone = request.POST.get('phone')
     contact_email = request.POST.get('email')
     description = request.POST.get('description')
     photo = request.FILES.get('file')
-    user = request.user
-    pet_id = request.POST.get('pet_id')
     
     if pet_id:
         pet = Pet.objects.get(id=pet_id)
         if user == pet.user:
+            pet.owner = owner
+            pet.pet_name = pet_name
+            pet.breed = breed
             pet.email = contact_email
             pet.phone = contact_phone
             pet.city = city
@@ -38,7 +43,7 @@ def set_pet(request):
                 pet.photo = photo
             pet.save()
     else:
-        pet = Pet.objects.create(pet_name=pet_name, district=district, city=city, 
+        pet = Pet.objects.create(owner=owner, pet_name=pet_name, breed=breed, district=district, city=city, 
                                 contact_phone=contact_phone, contact_email=contact_email,
                                 description=description, photo=photo, user=user)
     url = '/pet/detail/{}/'.format(pet.id)

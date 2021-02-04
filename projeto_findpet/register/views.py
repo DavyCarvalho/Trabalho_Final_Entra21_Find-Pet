@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import RegisterForm
+from .forms import RegisterForm # EditUserForm, ResetPasswordForm
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
 
@@ -10,7 +10,6 @@ def register(request):
             user = form.save()
             login(request, user)
             return redirect(reverse("all"))
-        # return render(request, 'list.html')
     else:
         form = RegisterForm()
     
