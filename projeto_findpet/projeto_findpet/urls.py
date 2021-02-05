@@ -25,6 +25,7 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
     path('pet/all/', views.list_all_pets, name='all'),
+    path('pet/notifications/', views.list_pets_eu_vi, name='notifications'),    
     path('pet/user/', views.list_user_pets, name='all_user_pets'),
     path('pet/detail/<id>/', views.pet_detail, name='pet_detail'),
     path('register_user/', rv.register, name='register_user'),

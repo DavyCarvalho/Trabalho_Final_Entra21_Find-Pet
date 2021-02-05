@@ -68,6 +68,50 @@ def list_user_pets(request):
     pet = Pet.objects.filter(active=True, user=request.user)
     return render(request, 'list.html', {'pet':pet})
 
+@login_required(login_url='/login/')
+def list_pets_eu_vi(request):
+    
+    pets_qs = Pet.objects.filter(active=True, user=request.user)
+    pets = []
+    
+    class PetComEu_vi():
+        def __init__(self, pet_name, photo, begin_date,
+                     user_eu_vi, phone_eu_vi, street_eu_vi,
+                     district_eu_vi, city_eu_vi, 
+                     description_eu_vi, begin_date_eu_vi):
+            self.pet_name = pet_name
+            self.photo = photo
+            self.begin_date = begin_date
+            self.user_eu_vi = user_eu_vi
+            self.phone_eu_vi = phone_eu_vi
+            self.street_eu_vi = street_eu_vi
+            self.district_eu_vi = district_eu_vi
+            self.city_eu_vi = city_eu_vi
+            self.description_eu_vi = description_eu_vi
+            self.begin_date_eu_vi = begin_date_eu_vi 
+    
+    for pet in pets_qs:
+        
+        UltimoQueViu = Eu_vi.objects.filter(post=pet.id).order_by('-begin_date')[0]
+        
+        petComUltimoQueViu = PetComEu_vi(
+            
+            pet_name = pet.pet_name,
+            photo = pet.photo,
+            begin_date = pet.begin_date,
+            user_eu_vi = UltimoQueViu.user,
+            phone_eu_vi = UltimoQueViu.phone,
+            street_eu_vi = UltimoQueViu.street,
+            district_eu_vi = UltimoQueViu.district,
+            city_eu_vi = UltimoQueViu.city,
+            description_eu_vi = UltimoQueViu.description,
+            begin_date_eu_vi =  UltimoQueViu.begin_date    
+        )
+        
+        pets.append(petComUltimoQueViu)
+        
+    return render(request, 'notifications.html', {'pets':pets})
+
 
 def pet_detail(request, id):
     pet = Pet.objects.get(active=True, id=id)
