@@ -30,7 +30,7 @@ class Eu_vi(models.Model):
     id = models.AutoField(primary_key=True)
     user = models.CharField(max_length=30) #---------------------> USAR O USER QUE ESTÁ LOGADO no request !!!
     post = models.ForeignKey(Pet, on_delete=models.CASCADE)
-    phone =  models.CharField(max_length=30) #--------------------> USAR O USER QUE ESTÁ LOGADO no request !!!
+    phone =  models.CharField(max_length=30, default='Preferiu não Informar')
     street = models.CharField(max_length=30)
     district = models.CharField(max_length=30)
     city = models.CharField(max_length=30)

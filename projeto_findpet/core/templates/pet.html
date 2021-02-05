@@ -64,8 +64,8 @@
             {% endif %}
 
             {% if request.user != pet.user %}
-                <a href="#">
-                <button href="#" type="button" class="mt-4 btn btn-warning"><b>Clique aqui se você viu esse Pet!</b></button>
+                <a href="/pet/register_eu_vi/?id={{ pet.id }}">
+                <button type="button" class="mt-4 btn btn-warning"><b>Clique aqui se você viu esse Pet!</b></button>
                 </a>
             {% endif %}
         </div>
