@@ -61,16 +61,20 @@ def register_eu_vi(request):
 
 @login_required(login_url='/login/')
 def set_eu_vi(request):
+    pet_id = request.POST.get('pet_id')
+    
+    pet_eu_vi = Pet.objects.get(id=pet_id)
+    
     user = request.user
-    post = request.POST.get('pet.id') # <---------- TENTAR RESOLVER ERRO (NOT NULL constraint failed: core_eu_vi.post_id)
+    post = pet_eu_vi
     phone = request.POST.get('phone')
     street = request.POST.get('street')
     district = request.POST.get('district')
     city = request.POST.get('city')
     description = request.POST.get('description')
     
-    Eu_vi.objects.create(user=user, post=post, phone=phone, 
-                        street=street, district=district, 
+    Eu_vi.objects.create(user=user, post=post, phone=phone,
+                        street=street, district=district,
                         city=city, description=description)
     
     return redirect('all')
@@ -100,6 +104,7 @@ def list_pets_eu_vi(request):
     try:
     
         pets_qs = Pet.objects.filter(active=True, user=request.user)
+        # print(pets_qs)
         pets = []
     
         class PetComEu_vi():
@@ -120,6 +125,11 @@ def list_pets_eu_vi(request):
             
         for pet in pets_qs:
             
+            HistoricoEu_vi = Eu_vi.objects.filter(post=pet.id)
+            
+            print(HistoricoEu_vi)
+            print(pet.id)
+            
             UltimoQueViu = Eu_vi.objects.filter(post=pet.id).order_by('-begin_date')[0]
             
             petComUltimoQueViu = PetComEu_vi(
@@ -138,7 +148,8 @@ def list_pets_eu_vi(request):
             
             pets.append(petComUltimoQueViu)
             
-            return render(request, 'notifications.html', {'pets':pets})
+            if HistoricoEu_vi:
+                return render(request, 'notifications.html', {'pets':pets})
             
     except IndexError:
         return render(request, 'notifications.html')

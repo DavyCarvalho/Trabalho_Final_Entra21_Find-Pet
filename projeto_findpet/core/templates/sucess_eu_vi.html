@@ -161,48 +161,15 @@
     
 </style>
 
-{% if pets %}
-
-  <div class="container-fluid px-lg-5 body mt-3">
-    <h1 class='text-center mt-4 mb-2' >Últimas Informações Sobre seus PETS</h1>
-      <div class="row justify-content-left">
-          {% for pet in pets %}
-          <div class="col-lg-4 col-md-6 d-flex">
-              <div class="blog-card w-100">
-                  <div class="meta">
-                      <div class="photo" style="background-image: url({{pet.photo.url}})"></div>
-                  </div>
-                  <div class="description">
-                      <h1>PET : {{ pet.pet_name }}</h1>
-                      <h2>Usuário que viu seu Pet: {{ pet.user_eu_vi }} <br>
-                          Contato: {{ pet.phone_eu_vi }} <br>
-
-                          Visto por ultimo: <br>
-                          Rua: {{ pet.street_eu_vi }} <br>
-                          Bairro: {{ pet.district_eu_vi }} <br>
-                          Cidade: {{ pet.city_eu_vi }} <br><br>
-                          Descrição: {{ pet.description_eu_vi }}<br>
-                          Dia e Horário: {{ pet.begin_date_eu_vi }} <br>
-                      </h2>
-                  </div>
-              </div>
-          </div>
-          {% endfor %}
-      </div>
-  </div>
-
-{% else %}
-
-  <div class="row" style='margin-top:100px; margin-bottom:100px; z-index: -1;'>
+<div class="row" style='margin-top:100px; margin-bottom:100px; z-index: -1;'>
     <div class="col-sm-3" style="margin-left:50px;">
       <img src="{% static 'imgs\icone_emoji_triste.png' %}" style='height:100px; width:100px; float:right;'>
     </div>
     <div class='col-sm-5'>
       <h1>Desculpe! Você ainda não tem notificações sobre seus Pets!</h1>
     </div>
-  </div>
+</div>
 
 {% endif %}
-
 
 {% endblock %}
