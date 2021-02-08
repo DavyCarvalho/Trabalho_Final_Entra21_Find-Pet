@@ -104,9 +104,8 @@ def list_pets_eu_vi(request):
     try:
     
         pets_qs = Pet.objects.filter(active=True, user=request.user)
-        # print(pets_qs)
         pets = []
-    
+
         class PetComEu_vi():
             def __init__(self, pet_name, photo, begin_date,
                         user_eu_vi, phone_eu_vi, street_eu_vi,
@@ -125,31 +124,31 @@ def list_pets_eu_vi(request):
             
         for pet in pets_qs:
             
-            HistoricoEu_vi = Eu_vi.objects.filter(post=pet.id)
-            
-            print(HistoricoEu_vi)
-            print(pet.id)
-            
-            UltimoQueViu = Eu_vi.objects.filter(post=pet.id).order_by('-begin_date')[0]
-            
-            petComUltimoQueViu = PetComEu_vi(
+            if Eu_vi.objects.filter(post_id=pet.id).count() >= 1:
+
+                UltimoQueViu = Eu_vi.objects.filter(post=pet.id).order_by('-begin_date')[0]
                 
-                pet_name = pet.pet_name,
-                photo = pet.photo,
-                begin_date = pet.begin_date,
-                user_eu_vi = UltimoQueViu.user,
-                phone_eu_vi = UltimoQueViu.phone,
-                street_eu_vi = UltimoQueViu.street,
-                district_eu_vi = UltimoQueViu.district,
-                city_eu_vi = UltimoQueViu.city,
-                description_eu_vi = UltimoQueViu.description,
-                begin_date_eu_vi =  UltimoQueViu.begin_date    
-            )
+                petComUltimoQueViu = PetComEu_vi(
+                    
+                    pet_name = pet.pet_name,
+                    photo = pet.photo,
+                    begin_date = pet.begin_date,
+                    user_eu_vi = UltimoQueViu.user,
+                    phone_eu_vi = UltimoQueViu.phone,
+                    street_eu_vi = UltimoQueViu.street,
+                    district_eu_vi = UltimoQueViu.district,
+                    city_eu_vi = UltimoQueViu.city,
+                    description_eu_vi = UltimoQueViu.description,
+                    begin_date_eu_vi =  UltimoQueViu.begin_date    
+                )
+                
+                pets.append(petComUltimoQueViu)
             
-            pets.append(petComUltimoQueViu)
+            else:
+                pass
+
             
-            if HistoricoEu_vi:
-                return render(request, 'notifications.html', {'pets':pets})
+        return render(request, 'notifications.html', {'pets':pets})
             
     except IndexError:
         return render(request, 'notifications.html')
