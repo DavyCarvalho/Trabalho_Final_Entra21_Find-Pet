@@ -23,7 +23,7 @@
       padding: 14px 20px;
       text-decoration: none;
       font-size: 23px;
-      font-family: Comic Sans MS;
+      font-family: Verdana;
     }
     
     #navbar a:hover {
@@ -66,12 +66,12 @@
     {% endif %}
     <!-- <a href="#">MURAL DO SUCESSO</a> -->
     {% if request.user.is_authenticated %}
-      <a style='float: right;' href="/logout/">
-        <img src="{% static 'imgs\icone_sair.png'%}" style="margin-right:10px;float: left; height: 24px; width:24px";>
+      <a style='float: right; background-color: #ff5d5b' href="/logout/">
+        <img src="{% static 'imgs\icone_sair.png'%}" style="margin-right:10px;float: left; height: 28px; width:28px; background-color: #ff5d5b; margin-top: 3px">
         Sair
       </a>
       <a style='float: right;'>
-        <img src="{% static 'imgs\icone_user.png'%}" style="margin-right:10px;float: left; height: 24px; width:24px";>
+        <img src="{% static 'imgs\icone_user.png'%}" style="margin-right:10px;float: left; height: 28px; width:28px; margin-top: 3px">
         Bem vindo(a), {{ user.username }}
       </a>
     {% else %}
