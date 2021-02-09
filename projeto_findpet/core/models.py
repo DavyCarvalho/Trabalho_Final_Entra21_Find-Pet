@@ -4,12 +4,12 @@ from django.contrib.auth.models import User
 class Pet(models.Model):
     id = models.AutoField(primary_key=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    owner = models.CharField(max_length=30, default=None)
-    pet_name = models.CharField(max_length=30, default=None)
-    breed = models.CharField(max_length=15,default=None)
-    district = models.CharField(max_length=50, default=None)
+    owner = models.CharField(max_length=30, default=None) #<----- default=None é o problema de aceitar valores vazios!
+    pet_name = models.CharField(max_length=30, default=None)#<----- default=None é o problema de aceitar valores vazios!
+    breed = models.CharField(max_length=15,default=None)#<----- default=None é o problema de aceitar valores vazios!
+    district = models.CharField(max_length=50, default=None)#<----- default=None é o problema de aceitar valores vazios!
     city = models.CharField(max_length=100)
-    description = models.TextField(default=None)
+    description = models.TextField(default=None)#<----- default=None é o problema de aceitar valores vazios!
     contact_phone = models.CharField(max_length=11)
     contact_email = models.EmailField()
     begin_date = models.DateTimeField(auto_now_add=True)
