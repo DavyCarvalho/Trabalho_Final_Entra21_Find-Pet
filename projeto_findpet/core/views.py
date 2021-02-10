@@ -100,59 +100,119 @@ def list_user_pets(request):
 
 @login_required(login_url='/login/')
 def list_pets_eu_vi(request):
+    pets_do_user = Pet.objects.filter(active=True, user=request.user).order_by('-begin_date')
     
-    try:
+    pets_com_eu_vi = []
     
-        pets_qs = Pet.objects.filter(active=True, user=request.user)
-        pets = []
-
-        class PetComEu_vi():
-            def __init__(self, pet_name, photo, begin_date,
-                        user_eu_vi, phone_eu_vi, street_eu_vi,
-                        district_eu_vi, city_eu_vi, 
-                        description_eu_vi, begin_date_eu_vi):
-                self.pet_name = pet_name
-                self.photo = photo
-                self.begin_date = begin_date
-                self.user_eu_vi = user_eu_vi
-                self.phone_eu_vi = phone_eu_vi
-                self.street_eu_vi = street_eu_vi
-                self.district_eu_vi = district_eu_vi
-                self.city_eu_vi = city_eu_vi
-                self.description_eu_vi = description_eu_vi
-                self.begin_date_eu_vi = begin_date_eu_vi 
-            
-        for pet in pets_qs:
-            
-            if Eu_vi.objects.filter(post_id=pet.id).count() >= 1:
-
-                UltimoQueViu = Eu_vi.objects.filter(post=pet.id).order_by('-begin_date')[0]
-                
-                petComUltimoQueViu = PetComEu_vi(
-                    
-                    pet_name = pet.pet_name,
-                    photo = pet.photo,
-                    begin_date = pet.begin_date,
-                    user_eu_vi = UltimoQueViu.user,
-                    phone_eu_vi = UltimoQueViu.phone,
-                    street_eu_vi = UltimoQueViu.street,
-                    district_eu_vi = UltimoQueViu.district,
-                    city_eu_vi = UltimoQueViu.city,
-                    description_eu_vi = UltimoQueViu.description,
-                    begin_date_eu_vi =  UltimoQueViu.begin_date    
-                )
-                
-                pets.append(petComUltimoQueViu)
-            
-            else:
-                pass
-
-            
-        return render(request, 'notifications.html', {'pets':pets})
-            
-    except IndexError:
-        return render(request, 'notifications.html')
+    for pet in pets_do_user:
         
+        pet_com_eu_vi = []
+           
+        pet_com_eu_vi.append(pet)
+        pet_com_eu_vi.append(pet.eu_vi_set.all().order_by('-begin_date'))
+        
+        pets_com_eu_vi.append(pet_com_eu_vi)
+
+    
+    print(pets_do_user)   
+    print(pets_com_eu_vi)
+    
+    return render(request, 'notifications.html', {'pets_com_eu_vi':pets_com_eu_vi})
+    
+    
+
+    # try:
+            
+    #     pets_qs = Pet.objects.filter(active=True, user=request.user)
+    #     pets = []
+
+    #     class PetComEu_vi():
+    #         def __init__(self, pet_name, photo, begin_date,
+    #                     user_eu_vi, phone_eu_vi, street_eu_vi,
+    #                     district_eu_vi, city_eu_vi, 
+    #                     description_eu_vi, begin_date_eu_vi):
+    #             self.pet_name = pet_name
+    #             self.photo = photo
+    #             self.begin_date = begin_date
+    #             self.user_eu_vi = user_eu_vi
+    #             self.phone_eu_vi = phone_eu_vi
+    #             self.street_eu_vi = street_eu_vi
+    #             self.district_eu_vi = district_eu_vi
+    #             self.city_eu_vi = city_eu_vi
+    #             self.description_eu_vi = description_eu_vi
+    #             self.begin_date_eu_vi = begin_date_eu_vi 
+            
+    #     for pet in pets_qs:
+            
+    #         if Eu_vi.objects.filter(post_id=pet.id).count() >= 1:
+
+    #             UltimoQueViu = Eu_vi.objects.filter(post=pet.id).order_by('-begin_date')[0]
+                
+    #             petComUltimoQueViu = PetComEu_vi(
+                    
+    #                 pet_name = pet.pet_name,
+    #                 photo = pet.photo,
+    #                 begin_date = pet.begin_date,
+    #                 user_eu_vi = UltimoQueViu.user,
+    #                 phone_eu_vi = UltimoQueViu.phone,
+    #                 street_eu_vi = UltimoQueViu.street,
+    #                 district_eu_vi = UltimoQueViu.district,
+    #                 city_eu_vi = UltimoQueViu.city,
+    #                 description_eu_vi = UltimoQueViu.description,
+    #                 begin_date_eu_vi =  UltimoQueViu.begin_date    
+    #             )
+                
+    #             pets.append(petComUltimoQueViu)
+            
+    #         else:
+    #             pass
+    #     print(str(pets[0].city_eu_vi))
+    #     return render(request, 'notifications.html', {'pets':pets})
+        
+       
+    # except IndexError:
+    #     return render(request, 'notifications.html')
+    
+    
+    # try:
+    
+    #     pets_qs = Pet.objects.filter(active=True, user=request.user)
+        
+    #     pets_que_tem_eu_vi = []
+        
+    #     class PetComTodosEu_vi:
+    #         def __init__(self, Pet,Pet_Eu_vis):
+    #             self.Pet = Pet
+    #             self.Pet_Eu_vis = Pet_Eu_vis
+                
+    #         def __str__(self):
+    #             return self.Pet, self.Pet_Eu_vis
+        
+    #     for pet in pets_qs:
+            
+    #         HistoricoEu_vi = Eu_vi.objects.filter(post=pet.id).order_by('-begin_date')
+            
+    #         if Eu_vi.objects.filter(post_id=pet.id).count() >= 1:
+                
+    #             PetComTodosEu_vis = PetComTodosEu_vi(
+                    
+    #                Pet=pet,
+    #                Pet_Eu_vis = HistoricoEu_vi
+    #             )
+                
+    #             pets_que_tem_eu_vi.append(PetComTodosEu_vis)
+                
+    #         else:
+    #             pass
+            
+    #     print(pets_que_tem_eu_vi)
+            
+    #     return render(request, 'notifications.html', {'pets_que_tem_eu_vi':pets_que_tem_eu_vi})
+            
+    # except IndexError:
+    #     print('CAIU AQUI, INDEX ERROR!!!')
+    #     return render(request, 'notifications.html')
+    
         
 def pet_detail(request, id):
     pet = Pet.objects.get(active=True, id=id)

@@ -1,5 +1,7 @@
 {% extends "model-page.html" %}
 
+{% load static %}
+
 {% block content %}
 
 <style>
@@ -161,33 +163,47 @@
     }
     
 </style>
+{% if pet %}
 
-<div class="container-fluid px-lg-5 body mt-3">
-    <div class="row justify-content-left">
-        {% for p in pet %}
-        <div class="col-lg-4 col-md-6 d-flex">
-            <div class="blog-card w-100">
-                <div class="meta">
-                  {% if p.photo %}
-                    <div class="photo" style="background-image: url({{p.photo.url}})"></div>
-                  {% endif %}
-                </div>
-                <div class="description">
-                    <h1>Nome: {{ p.pet_name }}</h1>
-                    <h1>Dono: {{ p.owner }}</h1>
-                    <h2 class="pt-1 pb-4">
-                      Desaparecido em: {{p.city}}<br>
-                      Bairro: {{p.district}}<br>
-                      Postado em {{ p.begin_date }}
-                    </h2>
-                    <p class="read-more">
-                        <a href="../detail/{{ p.id }}" target="_blank">MAIS INFORMAÇÕES...</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-        {% endfor %}
+  <div class="container-fluid px-lg-5 body mt-3">
+      <div class="row justify-content-left">
+          {% for p in pet %}
+          <div class="col-lg-4 col-md-6 d-flex">
+              <div class="blog-card w-100">
+                  <div class="meta">
+                    {% if p.photo %}
+                      <div class="photo" style="background-image: url({{p.photo.url}})"></div>
+                    {% endif %}
+                  </div>
+                  <div class="description">
+                      <h1>Nome: {{ p.pet_name }}</h1>
+                      <h1>Dono: {{ p.owner }}</h1>
+                      <h2 class="pt-1 pb-4">
+                        Desaparecido em: {{p.city}}<br>
+                        Bairro: {{p.district}}<br>
+                        Postado em {{ p.begin_date }}
+                      </h2>
+                      <p class="read-more">
+                          <a href="../detail/{{ p.id }}" target="_blank">MAIS INFORMAÇÕES...</a>
+                      </p>
+                  </div>
+              </div>
+          </div>
+          {% endfor %}
+      </div>
+  </div>
+
+{% else %}
+
+  <div class="row" style='margin-top:100px; margin-bottom:100px; z-index: -1;'>
+    <div class="col-sm-3" style="margin-left:50px;">
+      <img src="{% static 'imgs\icone_emoji_triste.png' %}" style='margin-top:30px; height:150px; width:150px; float:right;'>
     </div>
-</div>
+    <div class='col-sm-5'>
+      <h1>Desculpe! Você ainda não tem nenhum Pet cadastrado! Clique em <b>Cadastrar</b> e faça sua primeira Postagem!</h1>
+    </div>
+  </div>
+
+{% endif %}
 
 {% endblock %}
