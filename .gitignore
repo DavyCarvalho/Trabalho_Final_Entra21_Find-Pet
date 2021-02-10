@@ -1,6 +1,4 @@
 venv
-<<<<<<< HEAD
 db.sqlite3
-=======
-db.sqlite3
->>>>>>> 6e3f882cb3195d572860fd10e1a3977369c9e71c
+*.sqlite3
+*.pyc
