@@ -5,14 +5,14 @@
     <h1 class='text-center mt-4'>Formulário de PET Avistado</h1>
     <h3 class='text-center mt-2'>Ajude {{pet.user}} a encontrar {{pet.pet_name}},<br>preenchendo os campos abaixo!</h3>
 
-    <form enctype='multipart/form-data' action='submit', method='POST'>{% csrf_token%}
+    <form enctype='multipart/form-data' action='submit' method='POST'>{% csrf_token%}
         
         <input type='' class='form-control' name='pet_id' value='{{ pet.id }}' hidden>
         
         <div class='container'>
 
             <div class='form-group'> 
-                <label for='pet_name' ><b>Quem viu</b></label>
+                <label for='pet_name'><b>Quem viu</b></label>
                 <input class= 'form-control' type='text' name='user' value="{{request.user}}" readonly> <!-- Não permitir alteração, apenas mostrar o user logado -->
             </div>
             
