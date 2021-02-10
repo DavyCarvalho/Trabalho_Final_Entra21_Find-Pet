@@ -55,19 +55,21 @@ body {
 
 @media (max-width: 1030px) {
 
-    container {
-
+    a {
         display: block;
         width: 100%;
-    }
+        }
 
-     a {
+    h5 {
         display: block;
-        width: 100%;
-    }
+        margin-left: 20px;
+        }
 
-    mt-3, ml-5 {
-        display: block;
-        width: 100%
+    h1 {
+        margin-right: 100px;
+        }
+
+     {
+        margin-right:50px;
     }
   }
