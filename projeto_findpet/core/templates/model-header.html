@@ -2,61 +2,15 @@
 
 <style>
     
-    .header {
-      background-color:#fbcb3d;
-      padding: 30px;
-      text-align: center;
-    }
-    
-    #navbar {
-      overflow: hidden;
-      background-color: #6BB8BB;
 
-    }
-    
-    #navbar a {
-      /* font:bold; */
-      float: left;
-      display: inline-block;
-      color: black;
-      text-align: left;
-      padding: 14px 20px;
-      text-decoration: none;
-      font-size: 23px;
-      font-family: Verdana;
-    }
-    
-    #navbar a:hover {
-      background-color: #5B9FA2;
-      color: black;
-    }
-    
-    #navbar a.active {
-      background-color: #ff5d5b;
-      color: white;
-    }
-    
-    .content {
-      padding: 16px;
-    }
-    
-    .sticky {
-      position: fixed;
-      top: 0;
-      width: 100%;
-    }
-    
-    .sticky + .content {
-      padding-top: 60px;
-    }
 </style>
     
 <div class="header">
     <img src="{% static 'imgs\logosemfundo.png'%}" style="margin-left:70px; width:170px; height: 170px;"></img>
 </div>
     
-<div id="navbar">
-    <a class="active" href="/pet/all/">INÍCIO</a>
+<div id="navbar" >
+    <a class="active" href="/pet/all/" style="background-color: black;">INÍCIO</a>
     {% if request.user.is_authenticated %}
       <a href="/pet/user/">Meus Pets</a>
       <a href="/pet/register/">Cadastrar</a>
@@ -67,7 +21,7 @@
     <!-- <a href="#">MURAL DO SUCESSO</a> -->
     {% if request.user.is_authenticated %}
       <a style='float: right; background-color: #ff5d5b' href="/logout/">
-        <img src="{% static 'imgs\icone_sair.png'%}" style="margin-right:10px;float: left; height: 28px; width:28px; background-color: #ff5d5b; margin-top: 3px">
+        <img src="{% static 'imgs\icone_sair.png'%}" style="margin-right:10px;float: left; height: 28px; width:28px; background-color: #ff5d5b; margin-top: 3px;">
         Sair
       </a>
       <a style='float: right;'>

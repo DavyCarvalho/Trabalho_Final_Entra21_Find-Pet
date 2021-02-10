@@ -1,7 +1,73 @@
+.header {
+      background-color:gold;
+      padding: 30px;
+      text-align: center;
+    }
+
+    #navbar {
+      overflow: hidden;
+      background-color: #FF5D5B;
+
+    }
+
+    #navbar a {
+      /* font:bold; */
+      float: left;
+      display: inline-block;
+      color: black;
+      text-align: left;
+      padding: 14px 20px;
+      text-decoration: none;
+      font-size: 23px;
+      font-family: Verdana;
+    }
+
+    #navbar a:hover {
+      background-color: #823E3D;
+      color: black;
+    }
+
+    #navbar a.active {
+      background-color: #ff5d5b;
+      color: white;
+    }
+
+    .content {
+      padding: 16px;
+    }
+
+    .sticky {
+      position: fixed;
+      top: 0;
+      width: 100%;
+    }
+
+    .sticky + .content {
+      padding-top: 60px;
+    }
 body {
   height: auto;
   margin: 0;
   font-size: 28px;
   font-family: Arial, Helvetica, sans-serif;
-  background-image: url(../imgs/fundoazu2.png);
+  background-image: url(../imgs/fundolaranja.png);
 }
+
+@media (max-width: 1030px) {
+
+    container {
+
+        display: block;
+        width: 100%;
+    }
+
+     a {
+        display: block;
+        width: 100%;
+    }
+
+    mt-3, ml-5 {
+        display: block;
+        width: 100%
+    }
+  }
