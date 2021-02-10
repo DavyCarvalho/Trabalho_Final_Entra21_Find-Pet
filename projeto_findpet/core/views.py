@@ -77,7 +77,13 @@ def set_eu_vi(request):
                         street=street, district=district,
                         city=city, description=description)
     
-    return redirect('all')
+    return redirect('/pet/sucess_eu_vi')
+
+
+@login_required(login_url='/login/')
+def sucess_eu_vi(request):
+    return render(request, 'sucess_eu_vi.html')
+
 
 @login_required(login_url='/login/')
 def delete_pet(request, id):
@@ -100,6 +106,7 @@ def list_user_pets(request):
 
 @login_required(login_url='/login/')
 def list_pets_eu_vi(request):
+    
     pets_do_user = Pet.objects.filter(active=True, user=request.user).order_by('-begin_date')
     
     pets_com_eu_vi = []
@@ -118,7 +125,6 @@ def list_pets_eu_vi(request):
     print(pets_com_eu_vi)
     
     return render(request, 'notifications.html', {'pets_com_eu_vi':pets_com_eu_vi})
-    
     
 
     # try:
