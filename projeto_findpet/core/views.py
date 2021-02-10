@@ -114,15 +114,16 @@ def list_pets_eu_vi(request):
     for pet in pets_do_user:
         
         pet_com_eu_vi = []
-           
-        pet_com_eu_vi.append(pet)
-        pet_com_eu_vi.append(pet.eu_vi_set.all().order_by('-begin_date'))
         
-        pets_com_eu_vi.append(pet_com_eu_vi)
-
-    
-    print(pets_do_user)   
-    print(pets_com_eu_vi)
+        if pet.eu_vi_set.all().count() >= 1:
+           
+            pet_com_eu_vi.append(pet)
+            pet_com_eu_vi.append(pet.eu_vi_set.all().order_by('-begin_date'))
+            
+            pets_com_eu_vi.append(pet_com_eu_vi)
+            
+        else:
+            pass
     
     return render(request, 'notifications.html', {'pets_com_eu_vi':pets_com_eu_vi})
     

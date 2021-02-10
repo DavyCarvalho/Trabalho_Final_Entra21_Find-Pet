@@ -175,7 +175,7 @@
                 <div class='row'>
 
                     <div class='col-sm-4'>
-                        <h5 class='mt-3 text-center' style='position: relative; z-index: -1;'><b>Nome: {{pet.pet_name}} || Dono: {{pet.owner}}</b></h5>
+                        <h5 class='mt-3 text-center' style='position: relative; z-index: -1;'><b>NOME: {{pet.pet_name}} || DONO: {{pet.owner}}</b></h5>
                         <div style='box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.2);
                                     background-color:#FFD700; width: 350px; height:300px; position: relative; z-index: -1;'>
                             
@@ -196,14 +196,14 @@
                         <div class='row'>
                           <div class='ml-5' style='background-color:#FFD700; width:100%;'>
                           {% for eu_vi in eu_vis %}
-                            <div class='ml-3 mt-3'> 
-                              <b>
-                                Quem viu: {{eu_vi.user}}<br>
-                                Contato: {{eu_vi.phone}}<br>
-                                Visto em: {{eu_vi.street}}, {{eu_vi.district}}, {{eu_vi.city}}<br>
-                                Data de postagem: {{eu_vi.begin_date}}<br><br>
-                                Descrição: {{eu_vi.description}}<br><br><br>
-                              </b>
+                            <div class='ml-3 mt-3 mb-5'>
+                                <b>
+                                  Quem viu: {{eu_vi.user}}<br>
+                                  Contato: {{eu_vi.phone}}<br>
+                                  Visto em: {{eu_vi.street}}, {{eu_vi.district}}, {{eu_vi.city}}<br>
+                                  Data de postagem: {{eu_vi.begin_date}}<br><br>
+                                  Descrição: {{eu_vi.description}}<br><br><br>
+                                </b>
                             </div> 
                           {% endfor %}
                           </div>
