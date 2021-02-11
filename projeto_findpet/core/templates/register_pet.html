@@ -4,7 +4,7 @@
 
     <h1 class='text-center mt-4'>CADASTRAR/ALTERAR PET DESAPARECIDO</h1>
 
-    <form id='form' enctype='multipart/form-data' method='POST'>{% csrf_token%}
+    <form id='form' enctype='multipart/form-data' method='POST' action='{% url "pet_register_submit" %}'>{% csrf_token%}
         <div id='error'></div>
         
         <input type='number' class='form-control' name='pet_id' value='{{ pet.id }}' hidden>
