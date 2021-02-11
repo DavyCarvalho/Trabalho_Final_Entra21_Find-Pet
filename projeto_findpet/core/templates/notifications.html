@@ -163,6 +163,27 @@
 
 {% if pets_com_eu_vi %}
 
+  <div class="modal" id="modal_confirm">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class='modal-header'>
+                <h4 class='modal-title'>Deseja realmente Excluir?</h4>
+                <button type='button' class='close' data-dismiss='modal'>&times;</button>
+            </div>
+            <div class='modal-body text-right'>
+                <a href='/pet/delete/{{ pet.id }}/'>
+                    <button type='button' class='btn btn-danger'>
+                        EXCLUIR
+                    </button>
+                </a>
+                    <button type='button' class='btn btn-warning' data-dismiss='modal'>
+                        CANCELAR
+                    </button>
+            </div>
+        </div>
+    </div>
+  </div>
+
   <div class="container-fluid px-lg-5 body mt-3">
     
     <h1 class='text-center mt-4 mb-2' >Últimas Informações Sobre seus PETS</h1>
@@ -184,10 +205,13 @@
                         </div>
                         {% if request.user == pet.user %}
                         <a href="/pet/register/?id={{ pet.id }}">
-                        <button type="button" class="mt-4 btn btn-warning"><b>Alterar Informações</b></button>
-                        </a>
-                        <button type="button" class="mt-4 btn btn-danger" data-toggle='modal'
-                                data-target="#modal_confirm"><b>Excluir Postagem</b></button>
+                          <button type="button" class="mt-4 btn btn-warning"><b>Alterar Informações</b></button>
+                          </a>
+                          <a href="/pet/historias-felizes/encontrado/{{ pet.id }}">
+                              <button type="button" class="mt-4 btn btn-success"><b>Pet encontrado</b></button>
+                          </a>
+                          <button type="button" class="mt-4 btn btn-danger" data-toggle='modal'
+                                  data-target="#modal_confirm"><b>Excluir Postagem</b></button>
                         {% endif %}
                     </div>
               
