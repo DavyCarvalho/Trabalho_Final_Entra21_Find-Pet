@@ -106,6 +106,7 @@ celerybeat.pid
 *.sage.py
 
 # Environments
+myvenv
 .env
 .venv
 env/
@@ -138,3 +139,4 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 .history
+\media
