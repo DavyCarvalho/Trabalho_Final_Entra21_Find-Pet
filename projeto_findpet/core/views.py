@@ -100,7 +100,7 @@ def list_all_pets(request):
     
 
 def historias_felizes(request):
-    historias_felizes = HistoriasFelizes.objects.filter(active=True)
+    historias_felizes = HistoriasFelizes.objects.filter(active=True).order_by('-begin_date')
     return render(request, 'historias_felizes.html', {'historias_felizes': historias_felizes})
 
 
@@ -128,7 +128,7 @@ def historias_felizes_encontrado_submit(request, id):
 
 @login_required(login_url='/login/')
 def list_user_pets(request):
-    pet = Pet.objects.filter(active=True, user=request.user)
+    pet = Pet.objects.filter(active=True, user=request.user).order_by('-begin_date')
     return render(request, 'list.html', {'pet':pet})
 
 

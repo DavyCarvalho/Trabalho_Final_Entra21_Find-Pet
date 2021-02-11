@@ -11,40 +11,26 @@
         <div class='form-group'>
             <label for='pet_name'><b>Nome do Pet</b></label>
             <input class='form-control' type='text' name='pet_name' placeholder='Nome do seu Amigo!'
-                value="{{pet.pet_name}}">
-        </div>
-
-        <div class='form-group'>
-            <label for='district'><b>Bairro</b></label>
-            <input class='form-control' type='text' name='district' placeholder='Bairro onde o Pet mora'
-                value="{{pet.district}}">
-        </div>
-
-        <div class='form-group'>
-            <label for='city'><b>Cidade</b></label>
-            <input class='form-control' type='text' name='city' placeholder='Cidade onde o Pet mora'
-                value="{{pet.city}}">
+                value="{{pet.pet_name}}" readonly>
         </div>
 
         <div class='form-group'>
             <label for='description'><b>Conte sua história!</b></label>
-            <textarea class='form-control' rows='5' type='text' name='description'
-                placeholder='Descreva como foi o reencontro com seu pet!'></textarea>
+            <textarea class='form-control' rows='10' type='text' name='description'
+                placeholder='Descreva como foi o reencontro com seu pet!' required></textarea>
         </div>
 
         <div class='form-group'>
-            {% if pet %}
-            <a>Caso queira compartilhar uma foto desse momento feliz, envie uma nova imagem para nós!</a>
+            <b>Por favor, compartilhe uma foto desse momento feliz, enviando uma imagem sua com seu pet para nós!</b>
             <br>
-            {% endif %}
-            <input type='file' class='form-control-file border' name='file' accept='image/*'>
+            <br>
+            {{pet.id}}
+            <input type='file' class='form-control-file border' name='file' accept='image/*' required>
         </div>
 
         <button type='submit' class='btn btn-primary'>
             <b>
-                {% if pet %}
                 Salvar
-                {% endif %}
             </b>
         </button>
     </div>

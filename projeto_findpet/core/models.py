@@ -44,6 +44,7 @@ class HistoriasFelizes(models.Model):
     pet = models.ForeignKey(Pet, on_delete=models.CASCADE)
     active = models.BooleanField(default=True)
     description = models.TextField(default=None)
+    begin_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return str(self.id)
