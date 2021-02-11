@@ -3,15 +3,10 @@ from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import Pet, Eu_vi
+from .models import Pet, Eu_vi, HistoriasFelizes
 
 @login_required(login_url='/login/')
 def register_pet(request):
-    pet_id = request.GET.get('id') #DUVIDAS O QUE ISSO ESTÁ FAZENDO EXATAMENTE! FALAR COM O PROFESSOR!!!! blaaaaaui
-    if pet_id:
-        pet = Pet.objects.get(id=pet_id)
-        if pet.user == request.user:
-            return render(request, 'register_pet.html', {'pet':pet})
     return render(request, 'register_pet.html')
 
 
@@ -89,13 +84,41 @@ def sucess_eu_vi(request):
 def delete_pet(request, id):
     pet = Pet.objects.get(id=id)
     if pet.user == request.user:
-        pet.delete()
+        pet.active = False
+        pet.save()
     return redirect('/') 
 
 
 def list_all_pets(request):
     pet = Pet.objects.filter(active=True).order_by('-begin_date')
     return render(request, 'list.html', {'pet':pet})
+    
+
+def historias_felizes(request):
+    historias_felizes = HistoriasFelizes.objects.filter(active=True)
+    return render(request, 'historias_felizes.html', {'historias_felizes': historias_felizes})
+
+
+def historias_felizes_mais(request, id):
+    historia_feliz = HistoriasFelizes.objects.get(pet__id=id)
+    return render(request, 'historias_felizes_mais.html', {'historia_feliz': historia_feliz})
+
+
+@login_required(login_url='/login/')
+def historias_felizes_encontrado(request, id):
+    pet = Pet.objects.get(id=id)
+    return render(request, 'historias_felizes_encontrado.html', {'pet': pet})
+
+    
+def historias_felizes_encontrado_submit(request, id):
+    pet = Pet.objects.get(id=id)
+    description = request.POST.get('description')
+
+    HistoriasFelizes.objects.create(pet=pet, description=description)
+    pet.active = False
+    pet.save()
+
+    return redirect('all')
 
 
 @login_required(login_url='/login/')

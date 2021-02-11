@@ -38,6 +38,15 @@ class Eu_vi(models.Model):
     
     class Meta:
         db_table = 'core_eu_vi'
-    
 
+class HistoriasFelizes(models.Model):
+    id = models.AutoField(primary_key=True)
+    pet = models.ForeignKey(Pet, on_delete=models.CASCADE)
+    active = models.BooleanField(default=True)
+    description = models.TextField(default=None)
 
+    def __str__(self):
+        return str(self.id)
+        
+    class Meta:
+        db_table = 'core_historias_felizes'
