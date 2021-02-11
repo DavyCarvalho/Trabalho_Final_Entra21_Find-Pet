@@ -22,7 +22,7 @@ class Pet(models.Model):
     class Meta:
         db_table = 'pet'
     
-class EuVi(models.Model):
+class Eu_vi(models.Model):
     id = models.AutoField(primary_key=True)
     user = models.CharField(max_length=30) #---------------------> USAR O USER QUE ESTÁ LOGADO no request !!!
     post = models.ForeignKey(Pet, on_delete=models.CASCADE)
@@ -49,4 +49,4 @@ class HistoriasFelizes(models.Model):
         return str(self.id)
         
     class Meta:
-        db_table = 'core_historiasfelizes'
+        db_table = 'core_historias_felizes'

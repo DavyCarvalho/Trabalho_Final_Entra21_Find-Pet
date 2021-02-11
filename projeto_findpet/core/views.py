@@ -3,7 +3,7 @@ from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import Pet, EuVi, HistoriasFelizes
+from .models import Pet, Eu_vi, HistoriasFelizes
 
 @login_required(login_url='/login/')
 def register_pet(request):
@@ -73,7 +73,7 @@ def set_eu_vi(request):
     city = request.POST.get('city')
     description = request.POST.get('description')
     
-    EuVi.objects.create(user=user, post=post, phone=phone,
+    Eu_vi.objects.create(user=user, post=post, phone=phone,
                         street=street, district=district,
                         city=city, description=description)
     
@@ -143,10 +143,10 @@ def list_pets_eu_vi(request):
         
         pet_com_eu_vi = []
         
-        if pet.euvi_set.all().count() >= 1:
+        if pet.eu_vi_set.all().count() >= 1:
            
             pet_com_eu_vi.append(pet)
-            pet_com_eu_vi.append(pet.euvi_set.all().order_by('-begin_date'))
+            pet_com_eu_vi.append(pet.eu_vi_set.all().order_by('-begin_date'))
             
             pets_com_eu_vi.append(pet_com_eu_vi)
             

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Pet, EuVi
+from .models import Pet, Eu_vi
 
 @admin.register(Pet)
 class PetAdmin(admin.ModelAdmin):
@@ -8,7 +8,7 @@ class PetAdmin(admin.ModelAdmin):
                     'contact_phone', 'contact_email', 
                     'begin_date', 'photo', 'active']
     
-@admin.register(EuVi)
+@admin.register(Eu_vi)
 class Eu_viAdmin(admin.ModelAdmin):
     list_display = ['id','user','post', 'phone', 
                     'street', 'district', 'city', 
