@@ -4,15 +4,35 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Pet, Eu_vi
+from register.forms import RegisterPetForm
 
 @login_required(login_url='/login/')
+#def register_pet(request):
 def register_pet(request):
-    pet_id = request.GET.get('id') #DUVIDAS O QUE ISSO ESTÁ FAZENDO EXATAMENTE! FALAR COM O PROFESSOR!!!! blaaaaaui
-    if pet_id:
-        pet = Pet.objects.get(id=pet_id)
-        if pet.user == request.user:
-            return render(request, 'register_pet.html', {'pet':pet})
-    return render(request, 'register_pet.html')
+    if request.method == "GET":
+        form = RegisterPetForm()
+        form.fields['breed'].queryset= Pet.objects
+        return render(request, 'register_pet.html', {'form': form})
+
+    elif request.method == "POST":
+        form = RegisterPetForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, 'list.html', {'form': form})
+
+        print(form.errors)
+        print(form.cleaned_data)
+        print(form)
+        return render(request, 'register_pet.html', {'form': form})
+
+    #return render(request, 'register_pet.html', {'form': form})
+
+    #pet_id = request.GET.get('id') #DUVIDAS O QUE ISSO ESTÁ FAZENDO EXATAMENTE! FALAR COM O PROFESSOR!!!! blaaaaaui
+    #if pet_id:
+    #    pet = Pet.objects.get(id=pet_id)
+    #    if pet.user == request.user:
+    #        return render(request, 'register_pet.html', {'pet':pet})
+    #return render(request, 'register_pet.html')
 
 
 @login_required(login_url='/login/')
