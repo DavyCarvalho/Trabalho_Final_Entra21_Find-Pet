@@ -28,6 +28,7 @@ class Eu_vi(models.Model):
     post = models.ForeignKey(Pet, on_delete=models.CASCADE)
     phone =  models.CharField(max_length=30, blank=True)
     street = models.CharField(max_length=30)
+    house_number = models.CharField(max_length=15, default='')
     district = models.CharField(max_length=30)
     city = models.CharField(max_length=30)
     description = models.TextField()

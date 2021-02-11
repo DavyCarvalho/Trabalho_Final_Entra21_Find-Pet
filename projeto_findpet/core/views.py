@@ -69,12 +69,13 @@ def set_eu_vi(request):
     post = pet_eu_vi
     phone = request.POST.get('phone')
     street = request.POST.get('street')
+    house_number = request.POST.get('house_number')
     district = request.POST.get('district')
     city = request.POST.get('city')
     description = request.POST.get('description')
     
     Eu_vi.objects.create(user=user, post=post, phone=phone,
-                        street=street, district=district,
+                        street=street, house_number=house_number, district=district,
                         city=city, description=description)
     
     return redirect('/pet/sucess_eu_vi')
