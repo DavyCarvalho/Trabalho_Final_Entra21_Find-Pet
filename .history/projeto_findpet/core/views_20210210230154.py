@@ -146,7 +146,7 @@ def list_pets_eu_vi(request):
         if pet.euvi_set.all().count() >= 1:
            
             pet_com_eu_vi.append(pet)
-            pet_com_eu_vi.append(pet.euvi_set.all().order_by('-begin_date'))
+            pet_com_eu_vi.append(pet.eu_vi_set.all().order_by('-begin_date'))
             
             pets_com_eu_vi.append(pet_com_eu_vi)
             

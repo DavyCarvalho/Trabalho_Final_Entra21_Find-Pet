@@ -38,6 +38,7 @@ urlpatterns = [
     path('login/submit', views.submit_login, name='login/submit'),
     path('pet/register_eu_vi/', views.register_eu_vi, name='register_eu_vi'),
     path('pet/register_eu_vi/submit',views.set_eu_vi),
+    path('pet/sucess_eu_vi/', views.sucess_eu_vi, name='sucess_eu_vi'),
     path('pet/register/',views.register_pet, name='register_pet'),
     path('pet/register/submit',views.set_pet),
     path('pet/delete/<id>/', views.delete_pet),

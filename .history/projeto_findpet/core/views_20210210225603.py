@@ -143,10 +143,10 @@ def list_pets_eu_vi(request):
         
         pet_com_eu_vi = []
         
-        if pet.euvi_set.all().count() >= 1:
+        if pet.eu_vi_set.all().count() >= 1:
            
             pet_com_eu_vi.append(pet)
-            pet_com_eu_vi.append(pet.euvi_set.all().order_by('-begin_date'))
+            pet_com_eu_vi.append(pet.eu_vi_set.all().order_by('-begin_date'))
             
             pets_com_eu_vi.append(pet_com_eu_vi)
             
@@ -155,6 +155,26 @@ def list_pets_eu_vi(request):
     
     return render(request, 'notifications.html', {'pets_com_eu_vi':pets_com_eu_vi})
     
+<<<<<<< HEAD
+        pets_qs = Pet.objects.filter(active=True, user=request.user)
+        pets = []
+
+        class PetComEuVi():
+            def __init__(self, pet_name, photo, begin_date,
+                        user_eu_vi, phone_eu_vi, street_eu_vi,
+                        district_eu_vi, city_eu_vi, 
+                        description_eu_vi, begin_date_eu_vi):
+                self.pet_name = pet_name
+                self.photo = photo
+                self.begin_date = begin_date
+                self.user_eu_vi = user_eu_vi
+                self.phone_eu_vi = phone_eu_vi
+                self.street_eu_vi = street_eu_vi
+                self.district_eu_vi = district_eu_vi
+                self.city_eu_vi = city_eu_vi
+                self.description_eu_vi = description_eu_vi
+                self.begin_date_eu_vi = begin_date_eu_vi 
+=======
 
     # try:
             
@@ -176,14 +196,23 @@ def list_pets_eu_vi(request):
     #             self.city_eu_vi = city_eu_vi
     #             self.description_eu_vi = description_eu_vi
     #             self.begin_date_eu_vi = begin_date_eu_vi 
+>>>>>>> 5d5bff1d260d8611cb433f4ea79e4ac69d98a7e5
             
     #     for pet in pets_qs:
             
+<<<<<<< HEAD
+            if EuVi.objects.filter(post_id=pet.id).count() >= 1:
+
+                UltimoQueViu = EuVi.objects.filter(post=pet.id).order_by('-begin_date')[0]
+                
+                petComUltimoQueViu = PetComEuVi(
+=======
     #         if Eu_vi.objects.filter(post_id=pet.id).count() >= 1:
 
     #             UltimoQueViu = Eu_vi.objects.filter(post=pet.id).order_by('-begin_date')[0]
                 
     #             petComUltimoQueViu = PetComEu_vi(
+>>>>>>> 5d5bff1d260d8611cb433f4ea79e4ac69d98a7e5
                     
     #                 pet_name = pet.pet_name,
     #                 photo = pet.photo,
