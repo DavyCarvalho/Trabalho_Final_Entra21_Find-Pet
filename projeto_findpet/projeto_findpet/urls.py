@@ -25,7 +25,12 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
     path('pet/all/', views.list_all_pets, name='all'),
-    path('pet/notifications/', views.list_pets_eu_vi, name='notifications'),    
+    path('pet/notifications/', views.list_pets_eu_vi, name='notifications'),
+    path('pet/historias-felizes', views.historias_felizes, name='historias_felizes'),
+    path('pet/historias-felizes/mais/<id>/', views.historias_felizes_mais, name='historias_felizes_mais'),
+    path('pet/historias-felizes/encontrado/<id>/', views.historias_felizes_encontrado, name='historias_felizes_encontrado'),
+    path('pet/historias-felizes/encontrado/<id>/submit',
+         views.historias_felizes_encontrado_submit),
     path('pet/user/', views.list_user_pets, name='all_user_pets'),
     path('pet/detail/<id>/', views.pet_detail, name='pet_detail'),
     path('register_user/', rv.register, name='register_user'),
@@ -37,7 +42,7 @@ urlpatterns = [
     path('pet/register/submit',views.set_pet),
     path('pet/delete/<id>/', views.delete_pet),
     path('logout/', views.logout_user, name='logout'),
-    path('', RedirectView.as_view(url='pet/all/'))
+    path('', RedirectView.as_view(url='pet/all/')),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

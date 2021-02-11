@@ -3,7 +3,7 @@ from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import Pet, Eu_vi
+from .models import Pet, EuVi, HistoriasFelizes
 
 @login_required(login_url='/login/')
 def register_pet(request):
@@ -73,7 +73,7 @@ def set_eu_vi(request):
     city = request.POST.get('city')
     description = request.POST.get('description')
     
-    Eu_vi.objects.create(user=user, post=post, phone=phone,
+    EuVi.objects.create(user=user, post=post, phone=phone,
                         street=street, district=district,
                         city=city, description=description)
     
@@ -83,13 +83,41 @@ def set_eu_vi(request):
 def delete_pet(request, id):
     pet = Pet.objects.get(id=id)
     if pet.user == request.user:
-        pet.delete()
+        pet.active = False
+        pet.save()
     return redirect('/') 
 
 
 def list_all_pets(request):
     pet = Pet.objects.filter(active=True).order_by('-begin_date')
     return render(request, 'list.html', {'pet':pet})
+    
+
+def historias_felizes(request):
+    historias_felizes = HistoriasFelizes.objects.filter(active=True)
+    return render(request, 'historias_felizes.html', {'historias_felizes': historias_felizes})
+
+
+def historias_felizes_mais(request, id):
+    historia_feliz = HistoriasFelizes.objects.get(pet__id=id)
+    return render(request, 'historias_felizes_mais.html', {'historia_feliz': historia_feliz})
+
+
+@login_required(login_url='/login/')
+def historias_felizes_encontrado(request, id):
+    pet = Pet.objects.get(id=id)
+    return render(request, 'historias_felizes_encontrado.html', {'pet': pet})
+
+    
+def historias_felizes_encontrado_submit(request, id):
+    pet = Pet.objects.get(id=id)
+    description = request.POST.get('description')
+
+    HistoriasFelizes.objects.create(pet=pet, description=description)
+    pet.active = False
+    pet.save()
+
+    return redirect('all')
 
 
 @login_required(login_url='/login/')
@@ -106,7 +134,7 @@ def list_pets_eu_vi(request):
         pets_qs = Pet.objects.filter(active=True, user=request.user)
         pets = []
 
-        class PetComEu_vi():
+        class PetComEuVi():
             def __init__(self, pet_name, photo, begin_date,
                         user_eu_vi, phone_eu_vi, street_eu_vi,
                         district_eu_vi, city_eu_vi, 
@@ -124,11 +152,11 @@ def list_pets_eu_vi(request):
             
         for pet in pets_qs:
             
-            if Eu_vi.objects.filter(post_id=pet.id).count() >= 1:
+            if EuVi.objects.filter(post_id=pet.id).count() >= 1:
 
-                UltimoQueViu = Eu_vi.objects.filter(post=pet.id).order_by('-begin_date')[0]
+                UltimoQueViu = EuVi.objects.filter(post=pet.id).order_by('-begin_date')[0]
                 
-                petComUltimoQueViu = PetComEu_vi(
+                petComUltimoQueViu = PetComEuVi(
                     
                     pet_name = pet.pet_name,
                     photo = pet.photo,

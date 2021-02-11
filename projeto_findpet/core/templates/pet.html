@@ -59,6 +59,9 @@
             <a href="/pet/register/?id={{ pet.id }}">
             <button type="button" class="mt-4 btn btn-warning"><b>Alterar Informações</b></button>
             </a>
+            <a href="/pet/historias-felizes/encontrado/{{ pet.id }}">
+                <button type="button" class="mt-4 btn btn-warning"><b>Pet encontrado</b></button>
+            </a>
             <button type="button" class="mt-4 btn btn-danger" data-toggle='modal'
                     data-target="#modal_confirm"><b>Excluir Postagem</b></button>
             {% endif %}
