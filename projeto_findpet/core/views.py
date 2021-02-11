@@ -7,6 +7,11 @@ from .models import Pet, Eu_vi, HistoriasFelizes
 
 @login_required(login_url='/login/')
 def register_pet(request):
+    pet_id = request.GET.get('id')
+    if pet_id:
+        pet = Pet.objects.get(id=pet_id)
+        if pet.user == request.user:
+            return render(request, 'register_pet.html', {'pet':pet})
     return render(request, 'register_pet.html')
 
 
