@@ -6,6 +6,8 @@ body {
   background-image: url(../imgs/fundolaranja.png);
 }
 
+
+
 @media (max-width: 1030px) {
     #navbar, #navbar a, #navbar a:hover, #navbar a.active {
         display: block;
@@ -13,20 +15,23 @@ body {
         }
 
 
-    }
+
     .logo {
         margin-right: 65px;
     }
 
-    .icone {
-        display: block;
-        width:100%;
-    }
+
 
     .logologin {
         margin-left: -50px;
         width:100%;
         }
+
+    .icone-info {
+        display: none;
+        }
+
+
 
 
 }
