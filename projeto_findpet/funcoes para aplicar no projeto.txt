@@ -1,20 +1,20 @@
 3ª tabela de comentarios do botão "Eu vi!" - IMPORTANTE
 
 link para cadastrar na tela de login - OK e mudar senha
-icone que mostre que o user está logado
+icone que mostre que o user está logado - OK
 redefinir senha - IMPORTANTE
 FAZER VERIFICAÇÃO NA HORA DE CADASTRAR PET - SE TODOS OS CAMPOS FORAM PREENCHIDOS!!! ESTA DANDO ERRO
 
 campo de busca por palavra chave 
 https://docs.djangoproject.com/en/3.1/ref/models/querysets/#std:fieldlookup-contains
 
-localização com google maps
+localização com google maps - OK
 api google vision
 melhorar o container do post - OK
 
-MUDAR MODEL DE PET E ADICIONAR OS CAMPOS ENDEREÇO NO MODEL USER
+MUDAR MODEL DE PET E ADICIONAR OS CAMPOS ENDEREÇO NO MODEL USER - ok +/-
 
-campo RAÇA no model Pet
+campo RAÇA no model Pet - OK
 
 botar prazo maximo de duração que o post pode ficar
 
