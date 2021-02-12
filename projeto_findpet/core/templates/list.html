@@ -163,6 +163,16 @@
     }
     
 </style>
+
+<div class='container'>
+    
+  <h1 class= "text-center mt-4 mb-3">
+    PETS DESAPARECIDOS   
+    <img class= "mb-2" src="{% static 'imgs\icone_lupa.png'%}" style="width:40px; height:40px;">
+  </h1>
+
+</div>
+
 {% if pet %}
 
   <div class="container-fluid px-lg-5 body mt-3">
@@ -184,7 +194,7 @@
                         Postado em {{ p.begin_date }}
                       </h2>
                       <p class="read-more">
-                          <a href="../detail/{{ p.id }}" target="_blank">MAIS INFORMAÇÕES...</a>
+                          <a href="../detail/{{ p.id }}">MAIS INFORMAÇÕES...</a>
                       </p>
                   </div>
               </div>

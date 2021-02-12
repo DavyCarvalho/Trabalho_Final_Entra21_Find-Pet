@@ -1,0 +1,42 @@
+{% extends "model-page.html"%}
+
+{% load static %}
+
+{% block content %}
+
+<div class='container'>
+    <div class='container'>
+    
+        <h1 class= "text-center mt-4 mb-3">
+            <img class= "mb-2" src="{% static 'imgs\iconedog.png'%}" style="width:70px; height:70px;">
+            Pet feliz é Pet encontrado!
+            <img class= "mb-3" src="{% static 'imgs\iconefesta.png'%}" style="width:70px; height:70px;">
+        </h1>
+
+    </div>
+    <div class='row'>
+        <div class='col-sm-4'>
+            <div style='box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.2);
+                        background-color:#FFD700; width: 350px; height:300px; position: relative; z-index: -1;'>
+
+                <img src='{{historia_feliz.pet.photo.url}}' style='width:350px; height: 263px; margin-top:15px;'>
+
+            </div>
+        </div>
+
+        <div class='col-sm-6'>
+            <h5 class='mt-3' style='position: relative; z-index: -1;'>Nome: {{historia_feliz.pet.pet_name}}</h5>
+            <h5 class='mt-3' style='position: relative; z-index: -1;'>Dono: {{historia_feliz.pet.owner}}</h5>
+            <h5 class='mt-3' style='position: relative; z-index: -1;'>Pet mora em: {{historia_feliz.pet.city}}, {{historia_feliz.pet.district}}</h5>
+            <h5 class='mt-3' style='position: relative; z-index: -1;'>Descrição: {{historia_feliz.description}}</h5>
+            <h5 class='mt-3' style='position: relative; z-index: -1;'>Desapareceu em: {{historia_feliz.pet.begin_date}}</h5>
+            <h5 class='mt-3' style='position: relative; z-index: -1;'>Encontrado em: {{historia_feliz.begin_date}}</h5>
+
+            {% if request.user == pet.user %}
+
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

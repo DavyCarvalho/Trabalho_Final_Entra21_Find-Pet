@@ -58,6 +58,7 @@ class Eu_vi(models.Model):
     post = models.ForeignKey(Pet, on_delete=models.CASCADE)
     phone =  models.CharField(max_length=30, blank=True)
     street = models.CharField(max_length=30)
+    house_number = models.CharField(max_length=15, default='')
     district = models.CharField(max_length=30)
     city = models.CharField(max_length=30)
     description = models.TextField()
@@ -68,6 +69,16 @@ class Eu_vi(models.Model):
     
     class Meta:
         db_table = 'core_eu_vi'
-    
 
+class HistoriasFelizes(models.Model):
+    id = models.AutoField(primary_key=True)
+    pet = models.ForeignKey(Pet, on_delete=models.CASCADE)
+    active = models.BooleanField(default=True)
+    description = models.TextField(default=None)
+    begin_date = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return str(self.id)
+        
+    class Meta:
+        db_table = 'core_historias_felizes'

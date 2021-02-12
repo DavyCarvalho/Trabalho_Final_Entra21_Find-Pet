@@ -3,12 +3,12 @@ from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import Pet, Eu_vi
+from .models import Pet, Eu_vi, HistoriasFelizes
 from register.forms import RegisterPetForm
 
 @login_required(login_url='/login/')
-#def register_pet(request):
 def register_pet(request):
+
     if request.method == "GET":
         form = RegisterPetForm()
         form.fields['breed'].queryset= Pet.objects
@@ -33,7 +33,6 @@ def register_pet(request):
     #    if pet.user == request.user:
     #        return render(request, 'register_pet.html', {'pet':pet})
     #return render(request, 'register_pet.html')
-
 
 @login_required(login_url='/login/')
 def set_pet(request):
@@ -89,12 +88,13 @@ def set_eu_vi(request):
     post = pet_eu_vi
     phone = request.POST.get('phone')
     street = request.POST.get('street')
+    house_number = request.POST.get('house_number')
     district = request.POST.get('district')
     city = request.POST.get('city')
     description = request.POST.get('description')
     
     Eu_vi.objects.create(user=user, post=post, phone=phone,
-                        street=street, district=district,
+                        street=street, house_number=house_number, district=district,
                         city=city, description=description)
     
     return redirect('/pet/sucess_eu_vi')
@@ -109,18 +109,46 @@ def sucess_eu_vi(request):
 def delete_pet(request, id):
     pet = Pet.objects.get(id=id)
     if pet.user == request.user:
-        pet.delete()
+        pet.active = False
+        pet.save()
     return redirect('/') 
 
 
 def list_all_pets(request):
     pet = Pet.objects.filter(active=True).order_by('-begin_date')
     return render(request, 'list.html', {'pet':pet})
+    
+
+def historias_felizes(request):
+    historias_felizes = HistoriasFelizes.objects.filter(active=True).order_by('-begin_date')
+    return render(request, 'historias_felizes.html', {'historias_felizes': historias_felizes})
+
+
+def historias_felizes_mais(request, id):
+    historia_feliz = HistoriasFelizes.objects.get(pet__id=id)
+    return render(request, 'historias_felizes_mais.html', {'historia_feliz': historia_feliz})
+
+
+@login_required(login_url='/login/')
+def historias_felizes_encontrado(request, id):
+    pet = Pet.objects.get(id=id)
+    return render(request, 'historias_felizes_encontrado.html', {'pet': pet})
+
+    
+def historias_felizes_encontrado_submit(request, id):
+    pet = Pet.objects.get(id=id)
+    description = request.POST.get('description')
+
+    HistoriasFelizes.objects.create(pet=pet, description=description)
+    pet.active = False
+    pet.save()
+
+    return redirect('all')
 
 
 @login_required(login_url='/login/')
 def list_user_pets(request):
-    pet = Pet.objects.filter(active=True, user=request.user)
+    pet = Pet.objects.filter(active=True, user=request.user).order_by('-begin_date')
     return render(request, 'list.html', {'pet':pet})
 
 
