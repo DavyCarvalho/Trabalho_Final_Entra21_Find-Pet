@@ -1,0 +1,38 @@
+{% extends "model-page.html" %}
+
+{% block content %}
+
+<h1 class='text-center mt-4'>CONTE COMO ENCONTROU SEU PET</h1>
+
+<form enctype='multipart/form-data' action='submit' , method='POST'>{% csrf_token%}
+    <input type='number' class='form-control' name='pet_id' value='{{ pet.id }}' hidden>
+    <div class='container'>
+
+        <div class='form-group'>
+            <label for='pet_name'><b>Nome do Pet</b></label>
+            <input class='form-control' type='text' name='pet_name' placeholder='Nome do seu Amigo!'
+                value="{{pet.pet_name}}" readonly>
+        </div>
+
+        <div class='form-group'>
+            <label for='description'><b>Conte sua história!</b></label>
+            <textarea class='form-control' rows='10' type='text' name='description'
+                placeholder='Descreva como foi o reencontro com seu pet!' required></textarea>
+        </div>
+
+        <div class='form-group'>
+            <b>Por favor, compartilhe uma foto desse momento feliz, enviando uma imagem sua com seu pet para nós!</b>
+            <br>
+            <br>
+            <input type='file' class='form-control-file border' name='file' accept='image/*' required>
+        </div>
+
+        <button type='submit' class='btn btn-primary'>
+            <b>
+                Salvar
+            </b>
+        </button>
+    </div>
+</form>
+
+{% endblock %}

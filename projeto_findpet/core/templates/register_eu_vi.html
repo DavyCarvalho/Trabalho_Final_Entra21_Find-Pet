@@ -12,7 +12,7 @@
         <div class='container'>
 
             <div class='form-group'> 
-                <label for='pet_name'><b>Quem viu</b></label>
+                <label for='user'><b>Quem viu</b></label>
                 <input class= 'form-control' type='text' name='user' value="{{request.user}}" readonly> <!-- Não permitir alteração, apenas mostrar o user logado -->
             </div>
             
@@ -22,7 +22,7 @@
             </div>
 
             <div class='form-group'> 
-                <label for='pet_name' ><b>Seu contato</b></label>
+                <label for='phone' ><b>Seu contato</b></label>
                 <input class= 'form-control' type='text' name='phone' 
                        placeholder='Deixe este campo em Branco caso não queira informar seu contato!'>
             </div>
@@ -30,25 +30,31 @@
             <div class='form-group'>
                 <label for='district'><b>Rua</b></label>
                 <input class= 'form-control' type='text' name='street' 
-                       placeholder='Rua onde o Pet foi visto'>
+                       placeholder='Rua onde o Pet foi visto' required>
+            </div>
+
+            <div class='form-group'>
+                <label for='house_number'><b>Número da Casa</b></label>
+                <input class= 'form-control' type='text' name='house_number' 
+                       placeholder='Número da casa mais próxima ao local' required>
             </div>
 
             <div class='form-group'>
                 <label for='district'><b>Bairro</b></label>
                 <input class= 'form-control' type='text' name='district' 
-                       placeholder='Bairro onde o Pet foi visto'>
+                       placeholder='Bairro onde o Pet foi visto' required>
             </div>
 
             <div class='form-group'>
                 <label for='city'><b>Cidade</b></label>
                 <input class= 'form-control' type='text' name='city' 
-                       placeholder='Cidade onde o Pet foi visto'>
+                       placeholder='Cidade onde o Pet foi visto' required>
             </div>
             
             <div class='form-group'>
                 <label for='description'><b>Descrição</b></label>
                 <textarea class='form-control' rows='5' type='text' name='description'
-                          placeholder='Descreva aqui detalhes a respeito do Pet que você viu e outras informações que possam ajudar o dono a encontrá-lo'></textarea>
+                          placeholder='Descreva aqui detalhes a respeito do Pet que você viu e outras informações que possam ajudar o dono a encontrá-lo' required></textarea>
             </div>
 
             <button type='submit' class='btn btn-warning'>

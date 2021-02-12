@@ -4,58 +4,60 @@
 
     <h1 class='text-center mt-4'>CADASTRAR/ALTERAR PET DESAPARECIDO</h1>
 
-    <form enctype='multipart/form-data' action='submit', method='POST'>{% csrf_token%}
+    <form id='form' enctype='multipart/form-data' method='POST' action='{% url "pet_register_submit" %}'>{% csrf_token%}
+        <div id='error'></div>
+        
         <input type='number' class='form-control' name='pet_id' value='{{ pet.id }}' hidden>
         <div class='container'>
 
             <div class='form-group'> 
-                <label for='pet_name' ><b>Nome do Dono</b></label>
-                <input class= 'form-control' type='text' name='owner' 
-                       placeholder='Nome do dono do Pet!' value="{{pet.owner}}">
+                <label for='owner' ><b>Nome do Dono</b></label>
+                <input id='owner' class= 'form-control' type='text' name='owner' 
+                       placeholder='Nome do dono do Pet!' value="{{pet.owner}}" required>
             </div>
             
             <div class='form-group'> 
                 <label for='pet_name' ><b>Nome do Pet</b></label>
-                <input class= 'form-control' type='text' name='pet_name' 
-                       placeholder='Nome do seu Amigo!' value="{{pet.pet_name}}">
+                <input id='pet_name' class= 'form-control' type='text' name='pet_name' 
+                       placeholder='Nome do seu Amigo!' value="{{pet.pet_name}}" required>
             </div>
 
             <div class='form-group'> 
-                <label for='pet_name' ><b>Raça do Pet</b></label>
-                <input class= 'form-control' type='text' name='breed' 
-                       placeholder='Informe a Raça do seu Amigo! Favor conferir se o nome da raça está correto!' value="{{pet.breed}}">
+                <label for='breed' ><b>Raça do Pet</b></label>
+                <input id='breed' class= 'form-control' type='text' name='breed' 
+                       placeholder='Informe a Raça do seu Amigo! Favor conferir se o nome da raça está correto!' value="{{pet.breed}}" required>
             </div>
 
             <div class='form-group'>
                 <label for='district'><b>Bairro</b></label>
-                <input class= 'form-control' type='text' name='district' 
-                       placeholder='Bairro onde o Pet mora' value="{{pet.district}}">
+                <input id='district' class= 'form-control' type='text' name='district' 
+                       placeholder='Bairro onde o Pet mora' value="{{pet.district}}" required>
             </div>
 
             <div class='form-group'>
                 <label for='city'><b>Cidade</b></label>
-                <input class= 'form-control' type='text' name='city' 
-                       placeholder='Cidade onde o Pet mora' value="{{pet.city}}">
+                <input id='city' class= 'form-control' type='text' name='city' 
+                       placeholder='Cidade onde o Pet mora' value="{{pet.city}}" required>
             </div>
 
             <div class='form-group'>
                 <label for='phone'><b>Telefone</b></label>
-                <input class= 'form-control' type='text' name='phone' 
+                <input id='phone' class= 'form-control' type='text' name='phone' 
                         placeholder='Deixe aqui o telefone para entrarem em contato com você caso encontrem seu Pet!' 
-                        value="{{pet.contact_phone}}">
+                        value="{{pet.contact_phone}}" required>
             </div>
 
             <div class='form-group'>
                 <label for='email'><b>E-mail</b></label>
-                <input class= 'form-control' type='text' name='email' 
+                <input id='email' class= 'form-control' type='text' name='email' 
                        placeholder='Deixe aqui o E-mail para entrarem em contato com você caso encontrem seu Pet!' 
-                       value="{{pet.contact_email}}">
+                       value="{{pet.contact_email}}" required>
             </div>
 
             <div class='form-group'>
                 <label for='description'><b>Descrição do Desaparecimento/Pet</b></label>
-                <textarea class='form-control' rows='5' type='text' name='description'
-                          placeholder='Detalhes expecíficos a respeito do seu Pet e do desaparecimento dele que possam facilitar que alguem identifique ou encontre seu Amigo!'>{{pet.description}}</textarea>
+                <textarea id='description' class='form-control' rows='5' type='text' name='description'
+                          placeholder='Detalhes expecíficos a respeito do seu Pet e do desaparecimento dele que possam facilitar que alguem identifique ou encontre seu Amigo!' required>{{pet.description}}</textarea>
             </div>
 
             <div class='form-group'>
@@ -64,8 +66,9 @@
                     <br>
                     <a href='/media/{{pet.photo}}' target="_blank">Clique aqui para ver a Foto Atual</a>
                 {% endif %}
-                <input type='file' class='form-control-file border' name='file' 
-                       accept='image/*'>
+                <label for='file'><b>Anexe aqui uma foto do seu Pet para facilitar o reconhecimento dele!</b></label>
+                <input id='file' type='file' class='form-control-file border' name='file' 
+                       accept='image/*' required>
             </div>
 
             <button type='submit' class='btn btn-warning'>
