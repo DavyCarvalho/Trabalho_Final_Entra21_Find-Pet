@@ -4,9 +4,11 @@
 
     <h1 class='text-center mt-4'>CADASTRAR/ALTERAR PET DESAPARECIDO</h1>
 
+
     <form id='form' enctype='multipart/form-data' method='POST' action='{% url "pet_register_submit" %}'>{% csrf_token%}
+      
         <div id='error'></div>
-        
+        {{ form.non_field_errors }}
         <input type='number' class='form-control' name='pet_id' value='{{ pet.id }}' hidden>
         <div class='container'>
 
@@ -22,10 +24,13 @@
                        placeholder='Nome do seu Amigo!' value="{{pet.pet_name}}" required>
             </div>
 
-            <div class='form-group'> 
+            <div class='form-group'>
                 <label for='breed' ><b>Raça do Pet</b></label>
-                <input id='breed' class= 'form-control' type='text' name='breed' 
-                       placeholder='Informe a Raça do seu Amigo! Favor conferir se o nome da raça está correto!' value="{{pet.breed}}" required>
+                <select id='breed' class= 'form-control' type='text' name='breed' id='breed'>
+                    {% for raca in form.breed %}
+                        {{ raca }}
+                    {% endfor %}
+                </select>
             </div>
 
             <div class='form-group'>
@@ -41,15 +46,15 @@
             </div>
 
             <div class='form-group'>
-                <label for='phone'><b>Telefone</b></label>
-                <input id='phone' class= 'form-control' type='text' name='phone' 
+                <label for='contact_phone'><b>Telefone</b></label>
+                <input id='contact_phone' class= 'form-control' type='text' name='contact_phone'
                         placeholder='Deixe aqui o telefone para entrarem em contato com você caso encontrem seu Pet!' 
                         value="{{pet.contact_phone}}" required>
             </div>
 
             <div class='form-group'>
-                <label for='email'><b>E-mail</b></label>
-                <input id='email' class= 'form-control' type='text' name='email' 
+                <label for='contact_email'><b>E-mail</b></label>
+                <input id='contact_email' class= 'form-control' type='text' name='contact_email'
                        placeholder='Deixe aqui o E-mail para entrarem em contato com você caso encontrem seu Pet!' 
                        value="{{pet.contact_email}}" required>
             </div>
@@ -66,12 +71,14 @@
                     <br>
                     <a href='/media/{{pet.photo}}' target="_blank">Clique aqui para ver a Foto Atual</a>
                 {% endif %}
-                <label for='file'><b>Anexe aqui uma foto do seu Pet para facilitar o reconhecimento dele!</b></label>
-                <input id='file' type='file' class='form-control-file border' name='file' 
-                       accept='image/*' required>
+
+                <label for='photo'><b>Anexe aqui uma foto do seu Pet para facilitar o reconhecimento dele!</b></label>
+                <input id='photo' type='file' class='form-control-file border' name='photo'
+                       accept='image/*'>
+
             </div>
 
-            <button type='submit' class='btn btn-primary'>
+            <button type='submit' class='btn btn-warning'>
                 <b>
                     {% if pet %}
                         Alterar Informações
