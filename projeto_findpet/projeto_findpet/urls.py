@@ -43,6 +43,7 @@ urlpatterns = [
     path('pet/delete/<id>/', views.delete_pet),
     path('logout/', views.logout_user, name='logout'),
     path('', RedirectView.as_view(url='pet/all/')),
+    path('teste/',views.register_pet, name='teste'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
