@@ -43,11 +43,10 @@ def set_pet(request):
     breed = request.POST.get('breed')
     district = request.POST.get('district')
     city = request.POST.get('city')
-    contact_phone = request.POST.get('phone')
-    contact_email = request.POST.get('email')
+    contact_phone = request.POST.get('contact_phone')
+    contact_email = request.POST.get('contact_email')
     description = request.POST.get('description')
-    
-    photo = request.FILES.get('file')
+    photo = request.FILES.get('photo')
     
     if pet_id:
         pet = Pet.objects.get(id=pet_id)
