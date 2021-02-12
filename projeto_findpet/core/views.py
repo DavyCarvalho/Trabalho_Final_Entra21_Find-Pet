@@ -46,6 +46,7 @@ def set_pet(request):
     contact_phone = request.POST.get('phone')
     contact_email = request.POST.get('email')
     description = request.POST.get('description')
+    
     photo = request.FILES.get('file')
     
     if pet_id:
