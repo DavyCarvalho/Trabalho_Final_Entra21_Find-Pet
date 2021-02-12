@@ -58,6 +58,7 @@
 </div>
 
 <div id="navbar">
+    <div class="escrito"></div>
     <a class="active" href="/pet/all/">INÍCIO</a>
     {% if request.user.is_authenticated %}
     <a href="/pet/user/">Meus Pets</a>
@@ -83,7 +84,8 @@
             <img src="{% static 'imgs\icone_entrar.png'%}" style="margin-top:6px; margin-right:10px; float: left; height: 24px; width:24px";>
             Entrar
         </a>
-    {% endif %} 
+    {% endif %}
+    </div>
 </div>
 
 <script>
