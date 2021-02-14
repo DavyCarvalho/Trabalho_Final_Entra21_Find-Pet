@@ -10,6 +10,7 @@
         <div id='error'></div>
         {{ form.non_field_errors }}
         <input type='number' class='form-control' name='pet_id' value='{{ pet.id }}' hidden>
+        <!-- <input type='text' class='form-control' name='jaExiste' value='{{ jaExiste }}' hidden> -->
         <div class='container'>
 
             <div class='form-group'> 
@@ -26,7 +27,7 @@
 
             <div class='form-group'>
                 <label for='breed' ><b>Raça do Pet</b></label>
-                <select id='breed' class= 'form-control' type='text' name='breed' id='breed'>
+                <select id='breed' class= 'form-control' type='text' name='breed' value="{{pet.breed}}" required>
                     {% for raca in form.breed %}
                         {{ raca }}
                     {% endfor %}
@@ -69,12 +70,21 @@
                 {% if pet %}
                     <a>Caso não deseje alterar a foto do Pet, deixe o campo imagem em branco, ou envie uma nova imagem caso queira alterar a foto atual!</a>
                     <br>
-                    <a href='/media/{{pet.photo}}' target="_blank">Clique aqui para ver a Foto Atual</a>
+                    <a href='/media/{{pet.photo}}' target="_blank">Clique aqui para ver a Foto Atual<br></a>
+                    <label for='photo'><b>Anexe aqui uma foto do seu Pet para facilitar o reconhecimento dele!</b></label>
+                    <input id='photo' type='file' class='form-control-file border' name='photo'
+                    accept='image/*' value="{{pet.photo}}">
+                {% else %}
+                    <label for='photo'><b>Anexe aqui uma foto do seu Pet para facilitar o reconhecimento dele!</b></label>
+                    <input id='photo' type='file' class='form-control-file border' name='photo'
+                    accept='image/*' value="{{pet.photo}}" required>                    
                 {% endif %}
 
-                <label for='photo'><b>Anexe aqui uma foto do seu Pet para facilitar o reconhecimento dele!</b></label>
-                <input id='photo' type='file' class='form-control-file border' name='photo'
-                       accept='image/*'>
+                {% if erroNaoTemPet %}
+                    <div class="alert alert-danger" role="alert">
+                        <b style="color:red">{{erroNaoTemPet}}</b>
+                    </div>
+                {% endif %}
 
             </div>
 

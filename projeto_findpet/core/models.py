@@ -70,11 +70,12 @@ class Eu_vi(models.Model):
     class Meta:
         db_table = 'core_eu_vi'
 
-class HistoriasFelizes(models.Model):
+class HistoriasFelizes(models.Model): #adicionar campo foto para 'foto com o pet'
     id = models.AutoField(primary_key=True)
     pet = models.ForeignKey(Pet, on_delete=models.CASCADE)
     active = models.BooleanField(default=True)
     description = models.TextField(default=None)
+    happyphoto = models.ImageField(upload_to='uploaded_histories_photos', default=None)
     begin_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

@@ -5,9 +5,21 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Pet, Eu_vi, HistoriasFelizes
 from register.forms import RegisterPetForm
+from .validador_pet import validarSeTemCachorroNaFoto
 
 @login_required(login_url='/login/')
 def register_pet(request):
+    
+    pet_id = request.GET.get('id')
+    
+    if pet_id:
+        pet = Pet.objects.get(id=pet_id)
+        
+        if pet.user == request.user:
+            form = RegisterPetForm()
+            form.fields['breed'].queryset = Pet.objects
+            return render(request, 'register_pet.html', {'pet':pet, 'form': form})
+    
 
     if request.method == "GET":
         form = RegisterPetForm()
@@ -34,6 +46,7 @@ def register_pet(request):
     #        return render(request, 'register_pet.html', {'pet':pet})
     #return render(request, 'register_pet.html')
 
+
 @login_required(login_url='/login/')
 def set_pet(request):
     pet_id = request.POST.get('pet_id')
@@ -48,6 +61,27 @@ def set_pet(request):
     description = request.POST.get('description')
     photo = request.FILES.get('photo')
     
+    # jaExiste = request.POST.get('jaExiste')
+    
+    if photo:
+        
+        fotoValida = validarSeTemCachorroNaFoto(photo)
+        
+        if fotoValida == False:
+            
+            erroNaoTemPet = "Desculpe, mas verificamos que a foto enviada NÃO CONTÉM UM PET! Favor enviar outra foto!"
+            print(erroNaoTemPet)
+            
+            if pet_id:
+                pet = Pet.objects.get(id=pet_id)
+                form = RegisterPetForm(request.POST)
+                return render(request, 'register_pet.html', {'form': form, 'pet':pet, 'erroNaoTemPet':erroNaoTemPet})
+            
+            form = RegisterPetForm(request.POST)
+            return render(request, 'register_pet.html', {'form': form, 'erroNaoTemPet':erroNaoTemPet})
+    
+    # if jaExiste:
+        
     if pet_id:
         pet = Pet.objects.get(id=pet_id)
         if user == pet.user:
@@ -62,8 +96,8 @@ def set_pet(request):
                 pet.photo = photo
             pet.save()
     else:
-        pet = Pet.objects.create(owner=owner, pet_name=pet_name, breed=breed, district=district, city=city, 
-                                contact_phone=contact_phone, contact_email=contact_email,
+        pet = Pet.objects.create(owner=owner, pet_name=pet_name, breed=breed, district=district, 
+                                city=city, contact_phone=contact_phone, contact_email=contact_email,
                                 description=description, photo=photo, user=user)
     url = '/pet/detail/{}/'.format(pet.id)
     return redirect(url)
@@ -138,13 +172,14 @@ def historias_felizes_encontrado(request, id):
 def historias_felizes_encontrado_submit(request, id):
     pet = Pet.objects.get(id=id)
     description = request.POST.get('description')
+    happyphoto = request.FILES.get('photo')
 
-    HistoriasFelizes.objects.create(pet=pet, description=description)
+    HistoriasFelizes.objects.create(pet=pet, happyphoto=happyphoto , description=description)
     pet.active = False
     pet.save()
 
-    return redirect('all')
-
+    url = '/pet/historias-felizes/mais/{}/'.format(pet.id)
+    return redirect(url)
 
 @login_required(login_url='/login/')
 def list_user_pets(request):
