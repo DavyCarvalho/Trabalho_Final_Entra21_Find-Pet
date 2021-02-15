@@ -1,6 +1,7 @@
 import os, io
 from google.cloud import vision_v1
 from google.cloud.vision_v1 import types
+from .lista_de_pets_permitidos import permitidos
 
 def validarSeTemCachorroNaFoto(photo):
     
@@ -16,7 +17,7 @@ def validarSeTemCachorroNaFoto(photo):
 
     for object_ in objects:
         
-        if object_.name == "Dog" and object_.score > 0.6 or object_.name == "Cat" and object_.score > 0.6:
+        if object_.name in permitidos and object_.score > 0.6:
             return True
         
     return False

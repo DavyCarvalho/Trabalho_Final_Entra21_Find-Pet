@@ -17,7 +17,7 @@
   height: 100%; /* 100% Full-height */
   width: 0; /* 0 width - change this with JavaScript */
   position: fixed; /* Stay in place */
-  z-index: 3; /* Stay on top */
+  z-index: 6; /* Stay on top */
   top: 0; /* Stay at the top */
   left: 0;
   background-color: #111; /* Black*/
@@ -70,9 +70,9 @@
 <div id="mySidenav-devs" class="sidenav-devs">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNavDev()">&times;</a>
   
-  <div class='container'> 
+  <div class='container ml-5' style='width: 100%'> 
 
-    <div>
+    <div class='ml-5'>
 
         <h1 class='text-center' style='color: white'>
             
@@ -84,34 +84,144 @@
 
     </div>
                 
-    <div>       
+    <div class='row'> 
+      <!-- Davy -->
+      <div class="col-sm-8">
+        <h1 style='color: white'>
+          <img src="{% static 'imgs\davy.png'%}" style="margin-right:10px; height: 200px; width:200px";>
+          Davy de Lima Carvalho
+        </h1>
+      </div>
+      <!-- Davy -->
+      <div class="mb-3 col-sm-4 d-flex align-items-center justify-content-around">
+        
+        <a href="https://www.linkedin.com/in/davy-carvalho-18bb381b8/" target="_blank">
+          <img src="{% static 'imgs\icone_linkedin.png'%}" style="margin-right:20px; height: 60px; width:60px";>
+        </a>
+        <a href="mailto:davycarvalho2017@hotmail.com">
+          <img src="{% static 'imgs\icone_gmail.png'%}" style="margin-right:20px; height: 60px; width:70px";>
+        </a>
+        
+        <a href="#" target="_blank">
+          <img src="{% static 'imgs\icone_insta.png'%}" style="margin-right:20px; height: 60px; width:60px";>
+        </a>
+        
+        <a href="https://api.whatsapp.com/send?phone=5547996005815&text=Olá Davy! Vi o site FindPet da sua equipe do Entra21 e gostaria de falar com você!" target="_blank">
+          <img src="{% static 'imgs\icone_whats.png'%}" style="margin-right:20px; height: 60px; width:60px";>
+        </a>
+      </div>
 
-      <h1 style='color: white'>
-        <img src="{% static 'imgs\davy.png'%}" style="margin-right:10px; height: 200px; width:200px";>
-        Davy de Lima Carvalho
-      </h1>
 
-      <h1 style='color: white'>
-        <img src="{% static 'imgs\georgia.png'%}" style="margin-right:10px; height: 200px; width:200px";>
-        Georgia Alacoque
-      </h1>
+      <!-- Georgia -->
+      <div class="col-sm-8">
+        <h1 style='color: white'>
+          <img src="{% static 'imgs\georgia.png'%}" style="margin-right:10px; height: 200px; width:200px";>
+          Georgia Alacoque
+        </h1>
+      </div>
+      <!-- Georgia -->
+      <div class="mb-3 col-sm-4 d-flex align-items-center justify-content-around">
+        
+        <a href="https://www.linkedin.com/in/georgia-alacoque-68a1531b5/" target="_blank">
+          <img src="{% static 'imgs\icone_linkedin.png'%}" style="margin-right:20px; height: 60px; width:60px";>
+        </a>
+        <a href="mailto:g.alacoque@outlook.com">
+          <img src="{% static 'imgs\icone_gmail.png'%}" style="margin-right:20px; height: 60px; width:70px";>
+        </a>
+        
+        <a href="https://www.instagram.com/g.alacoque/" target="_blank">
+          <img src="{% static 'imgs\icone_insta.png'%}" style="margin-right:20px; height: 60px; width:60px";>
+        </a>
+        
+        <a href="https://api.whatsapp.com/send?phone=5531983362925&text=Olá Geórgia! Vi o site FindPet da sua equipe do Entra21 e gostaria de falar com você!" target="_blank">
+          <img src="{% static 'imgs\icone_whats.png'%}" style="margin-right:20px; height: 60px; width:60px";>
+        </a>
+      </div>
 
-      <h1 style='color: white'>
-        <img src="{% static 'imgs\isa.png'%}" style="margin-right:10px; height: 200px; width:200px";>
-        Isadora Moresco
-      </h1>
 
-      <h1 style='color: white'>
-        <img src="{% static 'imgs\jessica.png'%}" style="margin-right:10px; height: 200px; width:200px";>
-        Jéssica Carine Tomaz
-      </h1>
+      <!-- Isadora -->
+      <div class="col-sm-8">
+        <h1 style='color: white'>
+          <img src="{% static 'imgs\isa.png'%}" style="margin-right:10px; height: 200px; width:200px";>
+          Isadora Moresco
+        </h1>
+      </div>
+      <!-- Isadora -->
+      <div class="mb-3 col-sm-4 d-flex align-items-center justify-content-around">
+        
+        <a href="https://www.linkedin.com/in/isadora-moresco-30032b1a4/" target="_blank">
+          <img src="{% static 'imgs\icone_linkedin.png'%}" style="margin-right:20px; height: 60px; width:60px";>
+        </a>
 
-      <h1 style='color: white'>
-        <img src="{% static 'imgs\raul.png'%}" style="margin-right:10px; height: 200px; width:200px";>
-        Raul Furtado
-      </h1>
+        <a href="mailto:isamoresco@gmail.com">
+          <img src="{% static 'imgs\icone_gmail.png'%}" style="margin-right:20px; height: 60px; width:70px";>
+        </a>
+        
+        <a href="https://www.instagram.com/isa.moresco/" target="_blank">
+          <img src="{% static 'imgs\icone_insta.png'%}" style="margin-right:20px; height: 60px; width:60px";>
+        </a>
+        
+        <a href="https://api.whatsapp.com/send?phone=5547992122503&text=Olá Isadora! Vi o site FindPet da sua equipe do Entra21 e gostaria de falar com você!" target="_blank">
+          <img src="{% static 'imgs\icone_whats.png'%}" style="margin-right:20px; height: 60px; width:60px";>
+        </a>
+      </div>
+
+
+      <!-- Jéssica -->
+      <div class="col-sm-8">
+        <h1 style='color: white'>
+          <img src="{% static 'imgs\jessica.png'%}" style="margin-right:10px; height: 200px; width:200px";>
+          Jéssica Carine Tomaz
+        </h1>
+      </div>
+      <!-- Jéssica -->
+      <div class="mb-3 col-sm-4 d-flex align-items-center justify-content-around">
+        
+        <a href="https://www.linkedin.com/in/j%C3%A9ssica-carine-tomaz-232059176/" target="_blank">
+          <img src="{% static 'imgs\icone_linkedin.png'%}" style="margin-right:20px; height: 60px; width:60px";>
+        </a>
+
+        <a href="mailto:jessicacarine.tomaz@gmail.com">
+          <img src="{% static 'imgs\icone_gmail.png'%}" style="margin-right:20px; height: 60px; width:70px";>
+        </a>
+        
+        <a href="https://www.instagram.com/jessicacarinetomaz/" target="_blank">
+          <img src="{% static 'imgs\icone_insta.png'%}" style="margin-right:20px; height: 60px; width:60px";>
+        </a>
+        
+        <a href="https://api.whatsapp.com/send?phone=5547988695950&text=Olá Jéssica! Vi o site FindPet da sua equipe do Entra21 e gostaria de falar com você!" target="_blank">
+          <img src="{% static 'imgs\icone_whats.png'%}" style="margin-right:20px; height: 60px; width:60px";>
+        </a>
+      </div>
+
+
+      <!-- Raul -->
+      <div class="col-sm-8">
+        <h1 style='color: white'>
+          <img src="{% static 'imgs\raul.png'%}" style="margin-right:10px; height: 200px; width:200px";>
+          Raul Furtado
+        </h1>
+      </div>
+      <!-- Raul -->
+      <div class="mb-3 col-sm-4 d-flex align-items-center justify-content-around">
+        
+        <a href="https://www.linkedin.com/in/raul-henrique-furtado-878398192/">
+          <img src="{% static 'imgs\icone_linkedin.png'%}" style="margin-right:20px; height: 60px; width:60px" target="_blank">
+        </a>
+        <a href="mailto:raul.rhf9316@gmail.com">
+          <img src="{% static 'imgs\icone_gmail.png'%}" style="margin-right:20px; height: 60px; width:70px">
+        </a>
+        
+        <a href="https://www.instagram.com/raul_bjjtmc/">
+          <img src="{% static 'imgs\icone_insta.png'%}" style="margin-right:20px; height: 60px; width:60px" target="_blank">
+        </a>
+        
+        <a href="https://api.whatsapp.com/send?phone=5547996882541&text=Olá Raul! Vi o site FindPet da sua equipe do Entra21 e gostaria de falar com você!" target="_blank">
+          <img src="{% static 'imgs\icone_whats.png'%}" style="margin-right:20px; height: 60px; width:60px">
+        </a>
+      </div>
       
-    </div>
+    </div>  
 
   </div>
 
