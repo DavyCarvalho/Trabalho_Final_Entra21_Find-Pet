@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Pet, Eu_vi, HistoriasFelizes
 from register.forms import RegisterPetForm
 from .validador_pet import validarSeTemCachorroNaFoto
+from django.db.models import Q
 
 @login_required(login_url='/login/')
 def register_pet(request):
@@ -149,7 +150,23 @@ def delete_pet(request, id):
 
 
 def list_all_pets(request):
-    pet = Pet.objects.filter(active=True).order_by('-begin_date')
+    
+    search_query = request.GET.get('search')
+    
+    if search_query:
+        pet = Pet.objects.filter(Q(active=True) |
+                                Q(pet_name__icontains=search_query) |
+                                Q(breed__icontains=search_query) |
+                                Q(owner__icontains=search_query) |
+                                Q(district__icontains=search_query) |
+                                Q(city__icontains=search_query) |
+                                Q(description__icontains=search_query)).order_by('-begin_date')
+        print(search_query)
+        print(pet)
+    
+    else:
+        pet = Pet.objects.filter(active=True).order_by('-begin_date')
+        
     return render(request, 'list.html', {'pet':pet})
     
 
