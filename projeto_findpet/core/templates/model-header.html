@@ -55,6 +55,7 @@
       padding-top: 60px;
     }
 
+
     @media screen and (max-width: 600px) {
         .topnav a:not(:first-child) {display: none;}
         .topnav a.icon {
@@ -76,6 +77,55 @@
         display: block;
         text-align: left;
     }
+
+    /* The side navigation menu */
+.sidenav {
+  height: 100%; /* 100% Full-height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 3; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  background-color: rgb(255,215,0); /* Black*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; Place content 60px from the top
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+/* The navigation menu links */
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+  transition: margin-left .5s;
+  padding: 20px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
 }
 
 </style>
@@ -96,8 +146,15 @@
      <a href="/pet/register/">Cadatre aqui seu Pet desaparecido</a>
   {% endif %}
     <a href="/pet/historias-felizes">Histórias Felizes</a>
-  {% if request.user.is_authenticated %}
-    <a style='float: right;' href="/logout/">
+
+    <a>
+    <span onclick="openNav()">
+      <img class='' src="{% static 'imgs\icone_lupa.png'%}" style="margin-top:6px; float: right; height: 28px; width:28px";>
+    </span>
+    </a>
+    {% if request.user.is_authenticated %}
+        <a style='float: right;' href="/logout/">
+
         <img src="{% static 'imgs\icone_sair.png'%}" style="margin-top:6px; margin-right:10px;float: left; height: 24px; width:24px";>
         Sair
     </a>
@@ -116,21 +173,21 @@
   </a>
 </div>
 
+<div id="mySidenav" class="sidenav">
+  <div style="padding-left: 10%;">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <img class='mt-1 ml-1' src="{% static 'imgs\logosemfundo.png'%}" style="width:150px; height: 150px;">
+    
+    <form class='form-inline my-2 my-lg-0' action="{% url 'all' %}">
+      <input class='form-control mr-sm-2 mt-3' type='search' placeholder='Buscar Pet no Site' name='search'>
+      <button class='btn btn-success mt-2' type='submit'><b>Buscar</b></button>
+    </form>
 
-
-
-
-
-
-
-
-
-
-
-
-
+  </div>
+</div>
 
 <script>
+
 window.onscroll = function() {myFunction()};
 
 var navbar = document.getElementById("navbar");
@@ -144,7 +201,6 @@ function myFunction() {
     }
 }
 
-
 function myFunction() {
   var x = document.getElementById("myTopnav");
   if (x.className === "topnav") {
@@ -153,5 +209,14 @@ function myFunction() {
     x.className = "topnav";
   }
 }
+
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+
 </script>
 

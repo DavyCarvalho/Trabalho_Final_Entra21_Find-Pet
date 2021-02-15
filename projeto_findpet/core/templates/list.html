@@ -189,13 +189,20 @@
                       <h1>Nome: {{ p.pet_name }}</h1>
                       <h1>Dono: {{ p.owner }}</h1>
                       <h2 class="pt-1 pb-4">
-                        Desaparecido em: {{p.city}}<br>
+                        <a style="color:red;">Desaparecido em: {{p.city}}<br></a>
                         Bairro: {{p.district}}<br>
                         Postado em {{ p.begin_date }}
                       </h2>
+                      {% if p.active == True%}
+                        <p class="read-more">
+                            <a href="../detail/{{ p.id }}">MAIS INFORMAÇÕES...</a>
+                        </p>
+                      {% else %}
+                      
                       <p class="read-more">
-                          <a href="../detail/{{ p.id }}">MAIS INFORMAÇÕES...</a>
+                        <a href="../historias-felizes" style='color:green'>Pet Encontrado</a>
                       </p>
+                      {% endif %}
                   </div>
               </div>
           </div>
@@ -205,12 +212,12 @@
 
 {% else %}
 
-  <div class="row" style='margin-top:100px; margin-bottom:100px; z-index: -1;'>
-    <div class="col-sm-3" style="margin-left:50px;">
-      <img src="{% static 'imgs\icone_emoji_triste.png' %}" style='margin-top:30px; height:150px; width:150px; float:right;'>
+  <div class="row text-center" style='margin-top:100px; margin-bottom:100px; z-index: -1;'>
+    <div class="col-sm-3" style="">
+      <img class='' src="{% static 'imgs\icone_emoji_triste.png' %}" style='height:150px; width:150px; float:right;'>
     </div>
-    <div class='col-sm-5'>
-      <h1>Desculpe! Você ainda não tem nenhum Pet cadastrado! Clique em <b>Cadastrar</b> e faça sua primeira Postagem!</h1>
+    <div class='text-center mt-2 col-sm-7'>
+      <h1>Desculpe! Ainda não há nenhum Pet cadastrado!</h1>
     </div>
   </div>
 

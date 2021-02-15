@@ -1,0 +1,1 @@
+permitidos = ['Dog', 'Cat']
