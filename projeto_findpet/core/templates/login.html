@@ -13,17 +13,50 @@
 </head>
 <body>
 
+    <style>
+        .logologin {
+            width:300px; 
+            height: 300px; 
+            margin-top: 150px; 
+            margin-left:160px;   
+        }
+
+        .container-login {
+            margin-top:160px;
+        }
+
+        @media screen and (max-width: 660px) {
+            .container-login {
+            margin-top:30px;
+        }
+
+        .logologin {
+            width:300px; 
+            height: 300px; 
+            margin-top: 30px; 
+            margin-left:70px;   
+        }
+        .texto-form {
+            text-align:center;
+        }
+
+        .container-login {
+            margin-left:5%;
+        }
+    }
+    </style>
+
     <div class="row">
         <div class='login'>
             <div class="logologin">
-                <img src="{% static 'imgs\logosemfundo.png'%}" style="width:300px; height: 300px; margin-top: 150px; margin-left:160px;">
+                <img src="{% static 'imgs\logosemfundo.png'%}">
             </div>
         </div>
 
         <div class='col-sm-4'>
-            <div class='container login' style="margin-top:160px;">
+            <div class='container-login'>
                 <form action='submit', method='POST'>{% csrf_token %}
-                    <h2>FIND PET</h2>
+                    <h2 class='texto-form'>FIND PET</h2>
                     
                     <div class='form-group'>
                         <label for='username'>Usuário</label>

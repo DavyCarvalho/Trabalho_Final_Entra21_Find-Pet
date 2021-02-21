@@ -40,6 +40,13 @@
   display: none;
 }
 
+@media screen and (max-width: 1000px) {
+  .icone-info {
+    display: none;
+  }
+}
+
+
 @media screen and (max-width: 1280px) {
   .topnav a:not(:first-child) {display: none;}
   .topnav a.icon {
@@ -123,7 +130,7 @@
     
 <div class="header">
     <div class="logo">
-        <img src="{% static 'imgs\logosemfundo.png'%}" style="margin-left:70px; width:170px; height: 170px;">
+        <img src="{% static 'imgs\logosemfundo.png'%}" style="margin-left:; width:170px; height: 170px;">
     </div>
 </div>
 
@@ -184,22 +191,24 @@
   window.onscroll = function() {myFunction()};
 
   var navbar = document.getElementById("myTopnav");
-  var sticky = navbar.offsetTop;
 
   function myFunction() {
-      if (window.pageYOffset >= sticky) {
+      if (window.pageYOffset >= 170) {
       navbar.classList.add("sticky")
+      console.log('adicionei o sticky')
       } else {
       navbar.classList.remove("sticky");
+      console.log('removi o sticky')
       }
   }
 
   function navbarResponsiva() {
   var x = document.getElementById("myTopnav");
+
   if (x.className === "topnav") {
-    x.className += " responsive";
+    x.className += " responsive"
   } else {
-    x.className = "topnav";
+    x.className = "topnav"
   }
   }
 
