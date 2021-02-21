@@ -1,1 +1,1 @@
-permitidos = ['Dog', 'Cat']
+permitidos = ['Dog', 'Cat', 'Animal']
