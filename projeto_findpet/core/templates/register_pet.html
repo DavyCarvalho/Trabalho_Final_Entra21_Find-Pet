@@ -2,7 +2,17 @@
 
 {% block content %}
 
-    <h1 class='text-center mt-4'>CADASTRAR/ALTERAR PET DESAPARECIDO</h1>
+    <!-- <style>
+        @media screen and (min-width:420px) {
+            .titulo-cadastrar-pet{
+                font-size:20px;
+            }
+        }
+        
+    </style> -->
+
+
+    <h1 class='titulo-cadastrar-pet text-center mt-4'>CADASTRAR / ALTERAR PET DESAPARECIDO</h1>
 
 
     <form id='form' enctype='multipart/form-data' method='POST' action='{% url "pet_register_submit" %}'>{% csrf_token%}

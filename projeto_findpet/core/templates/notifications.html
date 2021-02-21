@@ -218,7 +218,7 @@
                     <div class='col-sm-8'>
                       <h5 class='mt-3 text-center' style='position: relative; z-index: -1;'><b>NOTIFICAÇÕES:</b></h5>
                         <div class='row'>
-                          <div class='ml-5' style='background-color:#FFD700; width:100%;'>
+                          <div style='background-color:#FFD700; width:100%;'>
                           {% for eu_vi in eu_vis %}
                             <div class='ml-3 mt-3 mb-5'> <!-- style='background-color:rgb(107,184,187);' -->
                                 <b>
@@ -227,9 +227,7 @@
                                   Visto em: {{eu_vi.street}}, {{eu_vi.house_number}}, {{eu_vi.district}}, {{eu_vi.city}}<br><br>
                                   
                                   Localização no Mapa:<br><br>
-                                  <iframe 
-                                  width="650"
-                                  height="250"
+                                  <iframe class='banana' style="width:650; height:250"
                                   frameborder="0" style="border: 0;"
                                   src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDNTk8xB50BsRp2vhrj9hmWqb2qK9Tzn-Y&q={{eu_vi.street}}+{{eu_vi.house_number}}+{{eu_vi.district}}+{{eu_vi.city}}" allowfullscreen>
                                   </iframe><br><br>
