@@ -8,47 +8,65 @@
     text-align: center;
   }
   
-  #navbar {
-    overflow: hidden;
-    background-color: #ff5d5b;
-    z-index: 2;
+  .topnav {
+  overflow: hidden;
+  background-color: #ff5d5b;
+  width:100%;
+  z-index: 2;
+}
+
+.topnav a {
+  float: left;
+  display: inline-block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+  font-size: 23px;
+  font-family: Comic Sans MS;
+}
+
+.topnav a:hover {
+  background-color:#8f4b4a;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #8f4b4a;
+  color: white;
+}
+
+.topnav .icon {
+  display: none;
+}
+
+@media screen and (max-width: 1280px) {
+  .topnav a:not(:first-child) {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
   }
-  
-  #navbar a {
-    /* font:bold; */
-    float: left;
-    display: inline-block;
-    color: black;
-    text-align: left;
-    padding: 14px 20px;
-    text-decoration: none;
-    font-size: 23px;
-    font-family: Comic Sans MS;
-  }
-  
-  #navbar a:hover {
-    background-color: #8a3a39;
-    color: black;
-  }
-  
-  #navbar a.active {
-    background-color: #ff5d5b;
-    color: white;
-  }
-  
-  .content {
-    padding: 16px;
-  }
-  
-  .sticky {
-    position: fixed;
+}
+
+@media screen and (max-width: 1280px) {
+  .topnav.responsive {position: fixed; top:0;}
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
     top: 0;
-    width: 100%;
   }
-  
-  .sticky + .content {
-    padding-top: 60px;
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
   }
+}
+
+  .sticky {
+      position: fixed;
+      top: 0;
+      width: 100%;
+    }
 
   /* The side navigation menu */
   .sidenav {
@@ -101,8 +119,6 @@
     
   }
 
-
-
 </style>
     
 <div class="header">
@@ -111,22 +127,23 @@
     </div>
 </div>
 
-<div id="navbar">
-    <a class="active" href="/pet/all/">INÍCIO</a>
+<div class="topnav" id="myTopnav">
+  <a href="/pet/all/" class="active">Início</a>
     {% if request.user.is_authenticated %}
     <a href="/pet/user/">Meus Pets</a>
     <a href="/pet/register/">Cadastrar</a>
     <a href="/pet/notifications/">Notificações</a>
     {% else %}
-    <a href="/pet/register/">Cadatre aqui seu Pet desaparecido</a>
+    <a href="/pet/register/">Cadastre aqui seu Pet desaparecido</a>
     {% endif %}
 
     <a href="/pet/historias-felizes">Histórias Felizes</a>
 
     <a>
       <span onclick="openNav()">
-        <img class='' src="{% static 'imgs\icone_lupa.png'%}" style="margin-top:6px; float: right; height: 28px; width:28px";>
+        <img class='' src="{% static 'imgs\icone_lupa.png'%}" style="float: left; height: 34px; width:34px";>
       </span>
+      <br>
     </a>
 
     {% if request.user.is_authenticated %}
@@ -143,7 +160,10 @@
             <img src="{% static 'imgs\icone_entrar.png'%}" style="margin-top:6px; margin-right:10px; float: left; height: 24px; width:24px";>
             Entrar
         </a>
-    {% endif %} 
+    {% endif %}
+    <a href="javascript:void(0);" class="icon" onclick="navbarResponsiva()">
+      <i class="fa fa-bars"></i>
+    </a>
 </div>
 
 <div id="mySidenav" class="sidenav">
@@ -160,9 +180,10 @@
 </div>
 
 <script>
+
   window.onscroll = function() {myFunction()};
 
-  var navbar = document.getElementById("navbar");
+  var navbar = document.getElementById("myTopnav");
   var sticky = navbar.offsetTop;
 
   function myFunction() {
@@ -171,6 +192,15 @@
       } else {
       navbar.classList.remove("sticky");
       }
+  }
+
+  function navbarResponsiva() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
   }
 
   function openNav() {
