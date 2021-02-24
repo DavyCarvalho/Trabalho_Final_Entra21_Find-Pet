@@ -89,9 +89,10 @@ def set_pet(request):
             pet.owner = owner
             pet.pet_name = pet_name
             pet.breed = breed
-            pet.email = contact_email
-            pet.phone = contact_phone
+            pet.contact_email = contact_email
+            pet.contact_phone = contact_phone
             pet.city = city
+            pet.district = district
             pet.description = description
             if photo:
                 pet.photo = photo
@@ -154,20 +155,19 @@ def list_all_pets(request):
     search_query = request.GET.get('search')
     
     if search_query:
-        pet = Pet.objects.filter(Q(active=True) |
-                                Q(pet_name__icontains=search_query) |
+        pet = Pet.objects.filter(Q(pet_name__icontains=search_query) |
                                 Q(breed__icontains=search_query) |
                                 Q(owner__icontains=search_query) |
                                 Q(district__icontains=search_query) |
                                 Q(city__icontains=search_query) |
                                 Q(description__icontains=search_query)).order_by('-begin_date')
-        print(search_query)
-        print(pet)
+        
+        return render(request, 'list.html', {'pet':pet,'search_query':search_query})
     
     else:
         pet = Pet.objects.filter(active=True).order_by('-begin_date')
         
-    return render(request, 'list.html', {'pet':pet})
+        return render(request, 'list.html', {'pet':pet})
     
 
 def historias_felizes(request):
