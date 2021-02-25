@@ -3,8 +3,8 @@ from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import Pet, Eu_vi, HistoriasFelizes
-from register.forms import RegisterPetForm
+from .models import Pet, Eu_vi, HistoriasFelizes, ReportarPostagem
+from register.forms import RegisterPetForm, ReportarPostagemForm
 from .validador_pet import validarSeTemCachorroNaFoto
 from django.db.models import Q
 
@@ -194,9 +194,8 @@ def historias_felizes_encontrado_submit(request, id):
     HistoriasFelizes.objects.create(pet=pet, happyphoto=happyphoto , description=description)
     pet.active = False
     pet.save()
-
-    url = '/pet/historias-felizes/mais/{}/'.format(pet.id)
-    return redirect(url)
+    
+    return render(request, 'list.html', {'pet':pet})
 
 @login_required(login_url='/login/')
 def list_user_pets(request):
@@ -323,7 +322,46 @@ def list_pets_eu_vi(request):
         
 def pet_detail(request, id):
     pet = Pet.objects.get(active=True, id=id)
-    return render(request, 'pet.html', {'pet':pet})
+    
+    form_report = ReportarPostagemForm()
+    form_report.fields['opcao'].queryset = ReportarPostagem.objects
+    
+    return render(request, 'pet.html', {'pet':pet, 'form_report': form_report})
+
+def pet_detail_submit(request, id):
+    
+    pet = Pet.objects.get(id=id)
+    
+    pet_id = request.POST.get('pet_id')
+    pet_owner = request.POST.get('pet_owner')
+    pet_name = request.POST.get('pet_name')
+    name = request.POST.get('name')
+    contact_email = request.POST.get('contact_email')
+    contact_phone = request.POST.get('contact_phone')
+    opcao = request.POST.get('opcao')
+    description = request.POST.get('description')
+
+    if contact_phone :
+    
+        ReportarPostagem.objects.create(pet_id=pet_id, pet_owner=pet_owner, 
+                                        pet_name=pet_name, name=name, 
+                                        contact_email=contact_email, contact_phone=contact_phone,
+                                        opcao=opcao, description=description)
+    
+    else:
+        ReportarPostagem.objects.create(pet_id=pet_id, pet_owner=pet_owner, 
+                                        pet_name=pet_name, name=name, 
+                                        contact_email=contact_email,
+                                        opcao=opcao, description=description)
+    
+    pet.active = False
+    pet.save()
+    
+    sucesso_report = "O problema foi encaminhado para nossos administradores e será analisado! Enquanto isso a postagem que você reportou ficará desativada!"
+    
+    pet = Pet.objects.filter(active=True).order_by('-begin_date')
+    
+    return render(request, 'list.html', {'pet':pet, 'sucesso_report':sucesso_report})
 
 
 def login_user(request):

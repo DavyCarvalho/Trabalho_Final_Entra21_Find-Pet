@@ -27,6 +27,67 @@
     </div>
 </div>
 
+<div class="modal" id="modal_reportar_problema">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class='modal-header'>
+                <h4 class='modal-title'>Reportar Problema aos Administradores</h4>
+                <button type='button' class='close' data-dismiss='modal'>&times;</button>
+            </div>
+            <div class='modal-body text-right'>
+
+                <form class='text-left' id='form-report' enctype='multipart/form-data' method='POST' action='{% url "pet_detail_submit" pet.id %}'>{% csrf_token%}
+
+                    <input type='text' class='form-control' name='pet_id' value='{{ pet.id }}' hidden>
+                    <input type='text' class='form-control' name='pet_owner' value='{{ pet.owner }}' hidden>
+                    <input type='text' class='form-control' name='pet_name' value='{{ pet.pet_name }}' hidden>
+                    
+                    <div class='form-group'> 
+                        <label for='name' ><b>Seu Nome:</b></label>
+                        <input id='name' class= 'form-control' type='text' name='name' 
+                            placeholder='Informe seu Nome' required>
+                    </div>
+                    
+                    <div class='form-group'>
+                        <label for='contact_phone'><b>Seu Telefone:</b></label>
+                        <input id='contact_phone' class= 'form-control' type='number' max='1' name='contact_phone'
+                                placeholder='Deixe este campo em branco caso não deseje informar!'>
+                    </div>
+        
+                    <div class='form-group'>
+                        <label for='contact_email'><b>Seu E-mail:</b></label>
+                        <input id='contact_email' class= 'form-control' type='text' name='contact_email'
+                            placeholder='Deixe este campo em branco caso não deseje informar!'>
+                    </div>
+
+                    <div class='form-group'>
+                        <label for='opcao' ><b>Problema:</b></label>
+                        <select id='opcao' class= 'form-control' type='text' name='opcao' required>
+                            {% for opcao in form_report.opcao %}
+                                {{ opcao }}
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class='form-group'>
+                        <label for='description'><b>Qual o problema e como podemos ajudá-lo a resolver?</b></label>
+                        <textarea id='description' class='form-control' rows='2' type='text' name='description'
+                                placeholder='Cite aqui detalhes que possam ajudar resolver o problema'></textarea>
+                    </div>
+                    
+                    <button type='submit' class='btn btn-danger'>
+                        Reportar
+                    </button>
+              
+                    <button type='button' class='btn btn-warning' data-dismiss='modal'>
+                        Cancelar
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class='container'>
     <div class='row'>
         <div class='col-sm-4'>
@@ -75,9 +136,13 @@
             {% endif %}
 
             {% if request.user != pet.user %}
+
                 <a href="/pet/register_eu_vi/?id={{ pet.id }}">
                 <button type="button" class="mt-4 btn btn-warning" style="margin-left:50px"><b>Clique aqui se você viu esse Pet!</b></button>
                 </a>
+                
+                <button type="button" class="mt-4 mr-5 btn btn-danger" data-toggle='modal' data-target="#modal_reportar_problema" style="margin-left:50px"><b>Notou algo de Errado? Clique aqui para Reportar</b></button>
+
             {% endif %}
         </div>
     </div>

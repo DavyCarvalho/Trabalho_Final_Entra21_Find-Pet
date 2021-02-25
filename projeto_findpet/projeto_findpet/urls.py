@@ -32,6 +32,9 @@ urlpatterns = [
     path('pet/historias-felizes/encontrado/<id>/submit', views.historias_felizes_encontrado_submit),
     path('pet/user/', views.list_user_pets, name='all_user_pets'),
     path('pet/detail/<id>/', views.pet_detail, name='pet_detail'),
+    
+    path('pet/detail/<id>/submit', views.pet_detail_submit, name='pet_detail_submit'),
+    
     path('register_user/', rv.register, name='register_user'),
     path('login/', views.login_user, name='login'),
     path('login/submit', views.submit_login, name='login/submit'),

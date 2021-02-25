@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
 from django.contrib.auth.models import User
-from core.models import Pet
+from core.models import Pet, ReportarPostagem
 
 
 class RegisterForm(UserCreationForm):
@@ -19,6 +19,12 @@ class RegisterPetForm(forms.ModelForm):
         model = Pet
         fields = ('owner', 'pet_name', 'breed', 'district', 'city', 'description', 'contact_phone',
                   'contact_email', 'photo')
+        
+class ReportarPostagemForm(forms.ModelForm):
+    class Meta:
+        model = ReportarPostagem
+        fields = ['pet_id', 'pet_owner', 'pet_name', 'name', 
+                    'contact_email', 'contact_phone', 'opcao']
 
 
 # class EditUserForm(UserChangeForm):

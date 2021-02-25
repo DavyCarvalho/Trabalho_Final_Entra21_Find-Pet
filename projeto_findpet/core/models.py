@@ -83,3 +83,29 @@ class HistoriasFelizes(models.Model): #adicionar campo foto para 'foto com o pet
         
     class Meta:
         db_table = 'core_historias_felizes'
+        
+        
+class ReportarPostagem(models.Model):
+    
+    CHOICES_PROBLEM = (
+        ("Este Animal não pertence a essa pessoa!", "Este Animal não pertence a essa pessoa!"),
+        ("Esse Animal já foi encontrado", "Esse Animal já foi encontrado"),
+        ("Essa postagem parace enganosa/fraudosa", "Essa postagem parace enganosa/fraudosa"),
+        ("Outro Motivo (Favor citar o motivo no campo de texto abaixo)", "Outro Motivo (Favor citar o motivo no campo de texto abaixo)"),
+    )
+
+    id = models.AutoField(primary_key=True)
+    pet_id = models.CharField(max_length=30) #-----> pegar o id do pet no request
+    pet_owner = models.CharField(max_length=30) #-----> pegar o owner do pet no request
+    pet_name = models.CharField(max_length=30) #-----> pegar o name do pet no request
+    name = models.CharField(max_length=30, blank=True)
+    contact_email = models.EmailField(blank=True)
+    contact_phone = models.IntegerField(blank=True, null=True, default=0)
+    opcao = models.CharField(choices= CHOICES_PROBLEM, max_length=70)
+    description = models.TextField(blank=True)
+    
+    def __str__(self):
+        return str(self.id)
+    
+    class Meta:
+        db_table = 'postagens_reportadas'

@@ -177,6 +177,12 @@
 
 </div>
 
+{% if sucesso_report %}
+      <div class="alert alert-success text-center mt-4 mb-3">
+        <strong>Obrigado! </strong> {{sucesso_report}}
+      </div>
+{% endif %}
+
 {% if pet %}
 
   <div class="container-fluid px-lg-5 body mt-3">
