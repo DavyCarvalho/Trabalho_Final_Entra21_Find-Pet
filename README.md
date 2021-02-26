@@ -13,8 +13,11 @@ Instagram: https://www.instagram.com/_find_pet/
 Davy de Lima Carvalho
 
 Linkedin: https://www.linkedin.com/in/davy-carvalho-18bb381b8/
+
 Instagram: N/A
+
 Email: davycarvalho2017@hotmail.com
+
 Whatsapp: 47 99600-5815
 
 ---------------------------------------------------------------
